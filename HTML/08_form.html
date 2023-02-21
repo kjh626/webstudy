@@ -8,13 +8,11 @@
 </head>
 <body>
     
-    <!-- ★ 우리가 공부할 게 많다. 또 잘해야 되는 거.
+    <!-- ★ 우리가 공부할 게 많다. 또 잘해야 되는 거. 모두 암기해야 함!
         입력할 상자를 만들 예정
         ex) 회원가입할 때 - 선택해서 체크하는 애들, 목록에서 고르는 애들, 직접 입력을 하는 경우(입력한 걸 보여주는 애, 안 보여주는 애도 있음)
     -->
-    <!-- 1. <input type="text"> 태그 -->
-        <!-- 하나씩 공부하되 전부 외워라!!! -->
-        <!-- size : 텍스트 상자의 크기 -->
+    <!-- 1. <input type="text"> 태그 -->    <!-- 하나씩 공부하되 전부 외워라!!! -->
     <p>
         <!-- 디폴트 상태 : type="text"가 적용 -->
         <input> 
@@ -47,10 +45,51 @@
         <input type="password" placeholder="비밀번호">
         <br>
         <!-- type="number" : 숫자 입력용 (min,max 사용가능)-->
-        <input type="number" min="1" max="12"> <!-- 스핀 버튼이 생겨서 위아래버튼 생김-->
+        <input type="number" min="1" max="12"> <!-- 스핀 버튼이 생김. 위아래버튼 생김-->
         <br>
         <!-- type="email" : 이메일 입력용(성능은 별로임) -->
         <input type="email" placeholder="이메일"> <!-- 잘못된 이메일이라고 찾아내는 성능이 떨어진다. 그래서 우리가 javascript에서 정규식으로 만들어서 쓴다.(id,pw,email 검사용으로)-->
+    </p>
+
+    <!-- 3. <textarea> 태그 -->
+    <p>
+        <!-- 디폴트 : 2행 20열 -->
+        <textarea></textarea>
+        <br>
+        <!-- rows 속성 : 행, cols 속성 : 열 -->
+        <textarea rows="3", cols="30"></textarea>
+        <br>
+        <!-- value 속성 대신 태그 내부 텍스트가 입력된 값을 저장한다. -->
+        <textarea>안녕하세요</textarea> <!-- value에서 값 꺼내는 것과 태그 내부 텍스트로 값 꺼내는 방법이 다르다. 알아두기-->
+    </p>
+
+    <!-- 4. 단일 선택 : <input type="radio"> -->
+    <p>
+        <!-- ★★name 속성★★ : 같은 name을 가지는 radio가 하나처럼 동작한다. (name속성은 서버개발할 때 필수로 알아야 함.) -->
+        <input type="radio" name="gender">남   <!-- "gender"라는 이름은 변수이름 같은 거임. 우리가 알아서 정하면 됨. -->
+        <input type="radio" name="gender">여
+        <br>
+        <!-- value 속성 : 어떤 radio를 선택했는지 알기 위해서 반드시 추가해야 한다. -->
+        <input type="radio" name="gender" value="male">남 <!-- 이렇게 해줘야 구분 가능 -->
+        <input type="radio" name="gender" value="female">여 <!-- 최종적으로는 db에 어떤 값으로 저장해줄 건지에 따라 value에 값을 주면 된다 -->
+        <!-- 이 입력도구가 Java로 넘어가면 String gender = "male" 이렇게 넘어감 -->
+    </p>
+
+    <!-- 5. 다중 선택 : <input type="checkbox"> -->
+    <p>
+        <!-- 단독 사용이 가능하다. -->
+        <input type="checkbox"> 모두 동의합니다
+        <br>
+        <!-- name 속성 : 같은 name을 가진 checkbox들은 하나의 배열처럼 동작한다. (값을 여러개 저장하는 하나)-->
+        <input type="checkbox" name="hobbies">운동
+        <input type="checkbox" name="hobbies">여행
+        <br>
+        <!-- value 속성 : 어떤 checkbox를 선택했는지 알기 위해서 반드시 추가해야 한다. -->
+        <input type="checkbox" name="hobbies" value="1">운동
+        <input type="checkbox" name="hobbies" value="2">여행
+        <input type="checkbox" name="hobbies" value="4">독서
+        <input type="checkbox" name="hobbies" value="8">영화 <!-- 운동,영화 골랐으면 String[] hobbies={"1","8"} 이 들어가게 된다.-->
+        <!-- 왜 1,2,4,8? 5면 운동,독서/ 10이면 여행,영화/ 12면 독서,영화 이렇게 파악이 가능한... 항목이 4개면 16, 5개면 32이렇게 주면 됨.(모두 해당 X의 경우도 있음)몰라도 된다.흘려 듣자-->
     </p>
 
 </body>
