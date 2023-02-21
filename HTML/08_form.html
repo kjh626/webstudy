@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- ★ 우리가 공부할 게 많다. 또 잘해야 되는 거.
+        입력할 상자를 만들 예정
+        ex) 회원가입할 때 - 선택해서 체크하는 애들, 목록에서 고르는 애들, 직접 입력을 하는 경우(입력한 걸 보여주는 애, 안 보여주는 애도 있음)
+    -->
+    <!-- 1. <input type="text"> 태그 -->
+        <!-- 하나씩 공부하되 전부 외워라!!! -->
+        <!-- size : 텍스트 상자의 크기 -->
+    <p>
+        <!-- 디폴트 상태 : type="text"가 적용 -->
+        <input> 
+        <br>
+        <!-- size 속성 : 입력 상자 크기는 5 -->
+        <input type="text" size="5">
+        <br>
+        <!-- maxlength 속성 : 입력 가능한 최대 글자 수는 4글자 -->
+        <input tpye="text" maxlength="4">
+        <br>
+        <!-- placeholder 속성 : 입력 메시지 (검색창의 Google검색 또는 URL 입력처럼.) -->
+        <input type="text" placeholder="검색어를 입력하세요">
+        <br>
+        <!-- required 속성 : 필수 입력 -->
+        <input type="text" required>  <!-- required만 적어도 된다. , 마우스 가져다대면  "이 입력란을 작성하세요." 나온다-->
+        <br>
+        <!-- value 속성 : 입력한 값이 저장되는 속성 (★굉장히 중요한 속성★) -->
+        <input type="text" value="날씨">
+        <br>
+        <!-- readonly 속성 : 입력된 값을 수정할 수 없게 만듦 -->
+        <input type="text" value="영희야사랑해" readonly> <!-- readonly만 적어도 된다. = 뒤에 생략가능-->
+        <br>
+        <!-- disabled 속성 : 입력 상자를 사용할 수 없도록 만듦 -->
+        <input type="text" disabled> <!-- disabled만 적어도 된다. = 뒤에 생략가능-->
+    </p>
+
+    <!-- 2. 기타 <input> 태그 -->
+    <p>
+        <!-- type="password" : 비밀번호 입력용 (★필수암기★ 입력이 안 보인다.)-->
+        <input type="password" placeholder="비밀번호">
+        <br>
+        <!-- type="number" : 숫자 입력용 (min,max 사용가능)-->
+        <input type="number" min="1" max="12"> <!-- 스핀 버튼이 생겨서 위아래버튼 생김-->
+        <br>
+        <!-- type="email" : 이메일 입력용(성능은 별로임) -->
+        <input type="email" placeholder="이메일"> <!-- 잘못된 이메일이라고 찾아내는 성능이 떨어진다. 그래서 우리가 javascript에서 정규식으로 만들어서 쓴다.(id,pw,email 검사용으로)-->
+    </p>
+
+</body>
+</html>
