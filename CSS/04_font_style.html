@@ -13,6 +13,7 @@
             font-weight: 900;                     /* 디폴트:400, 100 ~ 900. 굵게 얇게 */
             font-style: italic;                   /* italic : 기울임, none : 기울임 없애기 */
 
+            /* 블록 요소는 정렬이 된다. */
             text-align: center;                   /* 텍스트 정렬 : left, right, center, justify(양쪽 정렬) */
             text-decoration: underline;           /* CSS작업하는 데 필수임. 밑줄 주는 꾸미기 underline:밑줄, line-through:취소선, none:선 없애기(<a>태그는 밑줄생기니까 이거 없애주려고 마구마구 쓴다.) */
             text-shadow: 5px 5px 1px gray;      /* 그림자 : x크기(-가능) y크기(-가능) blur처리(또렷/흐릿) 색상 ; 사용법 복잡해서 들어두기만 하셈 */
@@ -26,6 +27,24 @@
             color: #FFFFFF;
             color: rgba(0, 0, 0, 0.5);          /* alpha(투명도) : 0(투명) ~ 1(불투명) */
         }
+        h1 {
+            /*
+                벤더 프리픽스
+                1. Vender Prefix
+                2. CSS 속성 앞에 브라우저 벤더(제공업체)를 작성하는 것을 의미한다.
+                3. 종류
+                    1) -webkit- : 크롬, 사파리
+                    2) -moz-    : 파이어폭스
+                    3) -o-      : 오페라
+                ※ 크로스 브라우징을 해본 적이 있는가..
+            */
+            -webkit-text-stroke-color: crimson; /*text-stroke는 중요한 게 아님.*/
+            -webkit-text-stroke-width: 1px;
+        }
+        a {
+            text-align: center;   /*  인라인은 어디서부터 아디까지 블록인지를 모른다.*/
+            /* 인라인 요소들이 정렬이 안 된다.  블록 요소들만 정렬이 된다.*/
+        }
     </style>
 </head>
 <body>
@@ -34,5 +53,10 @@
     
     <pre>Nice to meet you</pre>
     <pre>You good?</pre>
+
+    <h1>I'm fine</h1>
+
+    <a>Contact Us</a>
+
 </body>
 </html>
