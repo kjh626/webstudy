@@ -51,7 +51,7 @@
         <input type="email" placeholder="이메일"> <!-- 잘못된 이메일이라고 찾아내는 성능이 떨어진다. 그래서 우리가 javascript에서 정규식으로 만들어서 쓴다.(id,pw,email 검사용으로)-->
     </p>
 
-    <!-- 3. <textarea> 태그 -->
+    <!-- 3. <textarea> 태그 : input보다 큰 2줄 이상의 대화상자-->
     <p>
         <!-- 디폴트 : 2행 20열 -->
         <textarea></textarea>
@@ -65,7 +65,7 @@
 
     <!-- 4. 단일 선택 : <input type="radio"> -->
     <p>
-        <!-- ★★name 속성★★ : 같은 name을 가지는 radio가 하나처럼 동작한다. (name속성은 서버개발할 때 필수로 알아야 함.) -->
+        <!-- ★★name 속성★★ : 같은 name을 가지는 radio가 하나의 변수처럼 동작한다. (name속성은 서버개발할 때 필수로 알아야 함.) -->
         <input type="radio" name="gender">남   <!-- "gender"라는 이름은 변수이름 같은 거임. 우리가 알아서 정하면 됨. -->
         <input type="radio" name="gender">여
         <br>
@@ -91,6 +91,43 @@
         <input type="checkbox" name="hobbies" value="8">영화 <!-- 운동,영화 골랐으면 String[] hobbies={"1","8"} 이 들어가게 된다.-->
         <!-- 왜 1,2,4,8? 5면 운동,독서/ 10이면 여행,영화/ 12면 독서,영화 이렇게 파악이 가능한... 항목이 4개면 16, 5개면 32이렇게 주면 됨.(모두 해당 X의 경우도 있음)몰라도 된다.흘려 듣자-->
     </p>
+
+    <!-- 6. 목록 선택 : <select> 태그 -->
+    <p>
+        <!-- 하나의 option을 선택할 수 있다. -->
+        <select>
+            <option>naver.com</option>
+            <option>kakao.com</option>
+            <option>gmail.com</option>
+        </select>
+        <!-- multiple 속성 : 여러 개의 option을 선택할 수 있다. -->
+        <select multiple>
+            <option>서울</option>
+            <option>경기</option>
+            <option>인천</option>
+        </select>
+        <!-- name 속성  : <select> 태그에 작성한다. -->
+        <!-- value 속성 : <option> 태그에 작성한다. -->
+        <select name="direction">
+            <option value="">방향을 선택하세요</option>
+            <option value ="east">동</option>
+            <option value ="west">서</option>
+            <option value ="south">남</option>
+            <option value ="north">북</option>
+        </select>
+    </p>
+    
+    <!-- 7. 입력과 목록 선택을 동시에 처리 : <input type="text"> 태그와 <datalist> -->
+    <!-- 입력도 할 수 있고 목록도 보여줌(A 입력하면 A로 시작하는 것을 db에서 가져와서 목록으로 보여줌.) -->
+    <p>
+        <input type="text" list="domain">  <!-- id가 domain인 데이터리스트를 목록으로 가지겠다.-->
+        <datalist id="domain">
+            <option value="naver.com"/> <!-- 옵션 사이에 텍스트 안 쓰고 value에만 써줄거임-->
+            <option value="kakao.com"/> <!-- 꼭 열고 닫을 필요 없다. 사이에 텍스트 없음.-->
+            <option value="gmail.com"/>  <!-- ※ textarea는 < ></ > 사이에 내부 텍스트 비어있어도 <textarea/> 이렇게 나홀로 태그로 만들 수 없음.-->
+        </datalist>
+    </p>
+
 
 </body>
 </html>
