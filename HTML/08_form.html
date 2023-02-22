@@ -160,7 +160,7 @@
     -->
     <!-- 
         10. 버튼  아래사례 
-            1) <button type="sumbit">텍스트</button> : 서브밋, type="submit" 생략가능  <-버튼 많이 쓰면 좋을듯?
+            1) <button type="sumbit">텍스트</button> : 서브밋, type="submit" 생략가능(디폴트 값이라 생각)  <-버튼 많이 쓰면 좋을듯?
             2) <input type="submit" value="텍스트">  : 서브밋
             3) <input type="reset" value="텍스트">   : 입력 값을 초기화
             4) <input type="button" value="텍스트">  : 아무 일도 안하는 버튼, 직접 할 일을 지정해 줘야 함 <-우리가 만드는 경우 많아서 이거 써야됨.
@@ -206,13 +206,14 @@
             <input type="submit" value="로그인">
             <button type="sumbit">로그인2</button>
             <input type="button" value="로그인">
+            <button>로그인</button>
         </form>
     </p>
 
     <br>
     <h3>연습문제-2</h3>
     <p>
-        <form>
+        <form method="post">
             <table>
                 <tbody>
                     <tr>
@@ -278,111 +279,72 @@
                     <img src="../../images/logo_naver.png" alt="네이버" width="150px">
                 </a>
             </p>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <label for="id4">
-                                <strong>아이디</strong>
-                            </label><br>
-                        <input type="text" name="id" required id="id4">@naver.com
-                        </td>
-                    </tr>
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td>
-                            <label for="password4">
-                                <strong>비밀번호</strong>
-                            </label><br>
-                            <input type="password" name="pw" required id="password4">
-                        </td>
-                    </tr>
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td>
-                            <strong>비밀번호 재확인</strong>
-                            <br>
-                            <input type="password" id="password4re"> <!-- 2번째 비밀번호에는 name을 생략함 왜냐? 서버로 보낼 필요가 없어서.-->
-                        </td>
-                    </tr>
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td>
-                            <label for="name4">
-                                <strong>이름</strong>
-                            </label><br>
-                            <input type="text" id="name4">
-                        </td>
-                    </tr>
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td>
-                            <strong>생년월일</strong><br>
-                            <input type="text" placeholder="년(4자)" maxlength="4" size="4">
-                            <select name="month">
-                                <option value="">월</option>
-                                <option value="1">1월</option>
-                                <option value="2">2월</option>
-                                <option value="3">3월</option>
-                                <option value="4">4월</option>
-                                <option value="5">5월</option>
-                                <option value="6">6월</option>
-                                <option value="7">7월</option>
-                                <option value="8">8월</option>
-                                <option value="9">9월</option>
-                                <option value="10">10월</option>
-                                <option value="11">11월</option>
-                                <option value="12">12월</option>
-                            </select>
-                            <input type="text" placeholder="일" maxlength="2" size="3">
-                        </td>
-                    </tr>
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td>
-                            <label for="gender4">
-                                <strong>성별</strong><br>
-                            </label>
-                            <select name="gender" id="gender4">
-                                <option value="">성별</option>
-                                <option value="male">남자</option>
-                                <option value="female">여자</option>
-                                <option value="none">선택 안함</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td>
-                            <label for="email4">
-                                <strong>본인 확인 이메일</strong>(선택)
-                            </label><br>
-                            <input type="text" placeholder="선택입력" id="email4">
-                        </td>
-                    </tr>
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td>
-                            <strong>휴대전화</strong><br>
-                            <select name="phone">
-                                <option value="+82" selected>대한민국 +82</option>       <!-- selected 중간에 있는 대한민국을 처음에 보여주기 위해, 골라놓기 위해 원래는 맨위에 '가나'임-->
-                                <option value="010">+82 10</option>
-                            </select>
-                        <br>
-                            <input type="text" placeholder="전화번호 입력" size="10">
-                            <input type="button" value="인증번호 받기">
-                        <br>
-                            <input type="text" placeholder="인증번호 입력하세요">
-                        </td>
-                    </tr>
-                    <tr><td><br></td></tr>
-                    <tr>
-                        <td>
-                            <input type="submit" value="가입하기">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <br>
+            <label for="id4"><strong>아이디</strong></label>
+            <br>
+            <input type="text" name="id" id="id4">@naver.com
+            <br><br>
+            <label for="password4"><strong>비밀번호</strong></label>
+            <br>
+            <input type="password" name="pw" id="password4">
+            <br><br>
+            <label for="password5"><strong>비밀번호 재확인</strong></label>
+            <br>
+            <input type="password" id="password5"> <!-- 2번째 비밀번호에는 name을 생략함 왜냐? 서버로 보낼 필요가 없어서.-->
+            <br><br>
+            <label for="name4"><strong>이름</strong></label>
+            <br>
+            <input type="text" name="name" id="name4">
+            <br><br>
+            <label for="yyyy"><strong>생년월일</strong></label>
+            <br>
+            <input type="text" name="year" id="yyyy" placeholder="년(4자)" maxlength="4" size="4">
+            <select name="month">
+                <option value="">월</option>
+                <option value="1">1월</option>
+                <option value="2">2월</option>
+                <option value="3">3월</option>
+                <option value="4">4월</option>
+                <option value="5">5월</option>
+                <option value="6">6월</option>
+                <option value="7">7월</option>
+                <option value="8">8월</option>
+                <option value="9">9월</option>
+                <option value="10">10월</option>
+                <option value="11">11월</option>
+                <option value="12">12월</option>
+            </select>
+            <input type="text" name="day" placeholder="일" maxlength="2" size="4">
+            <br><br>
+            <label for="gender4"><strong>성별</strong></label>
+            <br>
+            <select name="gender" id="gender4">
+                <option value="">성별</option>
+                <option value="male">남자</option>
+                <option value="female">여자</option>
+                <option value="none">선택 안함</option>
+            </select>
+            <br><br>
+            <label for="email4"><strong>본인 확인 이메일</strong>(선택)</label>
+            <br>
+            <input type="text" name="email" placeholder="선택입력" id="email4">
+            <br><br>
+            <label for="user_tel"><strong>휴대전화</strong></label>
+            <br>
+            <select name="phone">
+                <option value="+233">가나 +233</option>
+                <option value="...">...</option>
+                <option value="+82" selected>대한민국 +82</option>       <!-- selected 중간에 있는 대한민국을 처음에 보여주기 위해, 골라놓기 위해 원래는 맨위에 '가나'임-->
+                <option value="...">...</option>
+                <option value="+832">홍콩 +832</option>
+            </select>
+            <br>
+            <input type="text" name="tel" placeholder="전화번호 입력" size="10">
+            <input type="button" value="인증번호 받기">
+            <br>
+            <input type="text" placeholder="인증번호 입력하세요" disabled>
+            <br><br>
+            <button>가입하기</button>
         </form>
     </p>
 </body>
