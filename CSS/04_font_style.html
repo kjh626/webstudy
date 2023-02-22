@@ -6,12 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        
+        p { /* 폰트 패밀리 : 없으면 다음 걸로 넘어가고 또 없으면 넘어가고 monospace(너비하고 높이가 1:1인 것들, 모든 코딩폰트가 이 형태)는 폰트가 아님 대충 이 종류로 해라.. */
+            font-family: '맑은 고딕', sans-serif; /* '맑은 고딕'이 없으면 고딕 계열(sans-serif)을 사용하시오. */
+            font-family: '궁서', serif;           /* '궁서'가 없으면 명조 계열(serif)을 사용하시오. */
+            font-size: 32px;                      /* 디폴트:16px */
+            font-weight: 900;                     /* 디폴트:400, 100 ~ 900. 굵게 얇게 */
+            font-style: italic;                   /* italic : 기울임, none : 기울임 없애기 */
+
+            text-align: center;                   /* 텍스트 정렬 : left, right, center, justify(양쪽 정렬) */
+            text-decoration: underline;           /* CSS작업하는 데 필수임. 밑줄 주는 꾸미기 underline:밑줄, line-through:취소선, none:선 없애기(<a>태그는 밑줄생기니까 이거 없애주려고 마구마구 쓴다.) */
+            text-shadow: 5px 5px 1px gray;      /* 그림자 : x크기(-가능) y크기(-가능) blur처리(또렷/흐릿) 색상 ; 사용법 복잡해서 들어두기만 하셈 */
+        }
+        pre {
+            line-height: 32px;                    /* 행 높이 : 세로 가운데 정렬에서 주로 활용 */
+            letter-spacing: -1px;                 /* 글자 간격. 주로 줄이는 경우가 많음(0.5씩). */
+            color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);          /* 8비트 값을 꽉 채우면 255  16진수 코드값으로 #000000 ~ #FFFFFF 2개씩*/
+            color: #000000;
+            color: #FFFFFF;
+            color: rgba(0, 0, 0, 0.5);          /* alpha(투명도) : 0(투명) ~ 1(불투명) */
+        }
     </style>
 </head>
 <body>
     
-    <h1>Hello World</h1>
-
+    <p>Hello World</p>
+    
+    <pre>Nice to meet you</pre>
+    <pre>You good?</pre>
 </body>
 </html>
