@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+        /* 1. 태그 선택자 */
+        h1 {
+            color: teal;
+        }
+    </style>
+    <h1>Hello World</h1>
+
+    <style>
+        /* 2. 클래스 선택자 */
+        .paragraph {
+            color: limegreen;
+        }
+    </style>
+    <p class="paragraph">Hello World</p>
+
+    <style>
+        /* 3. id 선택자 */
+        #content {
+            color: cyan;
+        }
+    </style>
+    <p id="content">Hello World</p>
+
+
+    <style>
+        /* 4. 자식 선택자 */
+        ul > li {    /* ul 밑에 li 를 의미 */
+            color: orange;
+        }
+        ul > li > a {    /* a링크는 ul의 자식이 아니다. li의 자식임 (ul 밑에 li 밑에 a 라고 적어줘야 함) */
+            color: orange;
+            text-decoration: none;
+        }
+        /* ※주의! 자식의 자식은 부모의 자식이 아님. (ul > a 는 틀린 것) */
+    </style>
+    <ul>
+        <li>
+            <a href="javascript:void(0)">spring</a>  <!--링크는 연결이 없는 링크임.-->
+        </li>
+        <li>
+            <a href="javascript:void(0)">summer</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">autumn</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">winter</a>
+        </li>
+    </ul>
+
+
+</body>
+</html>
