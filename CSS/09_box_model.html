@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 편의상 본문에 style 배치 -->
+    <style>
+        .wrap1 > .box1 {
+            width: 100px;
+            height: 100px;
+            background-color: lightgray;
+        }
+        .wrap1 > .box2 { 
+            /* ★인라인 요소(span, a 등)는 width와 height가 적용되지 않는다.★ 모르면 죽어!*/
+            width: 100px;
+            height: 100px;
+            background-color: lightcyan;
+        }
+    </style>
+    <!--웹페이지를 만들 때 우선 해야할 것은 구역을 나누는 것이다. 네모난 구역을 만들어서 원하는 자리에 가져다두겠다.
+        전체를 아우르는 박스, 그 안에서 세부적이게 박스화.
+        1px 차이로 좌우로 박스 넣으려 했는데 위아래로 밀리는 경우도 있음.
+        우리가 해야할 일은 아니지만 프로젝트할 때는 CSS가 허접하더라도 한땀한땀 써먹어 봐라
+        안 될 거같으면 만들어져 있는 페이지 가져다 써라 -->
+    <div class="wrap1">   <!--부모 자식 관계로 만들어 줌-->
+        <div class="box1">블록</div>     <!--div는 블록 레벨-->
+        <span class="box2">인라인</span> <!--span은 인라인 레벨-->
+    </div>
+
+    <hr>
+
+    <style>
+        /* 박스의 크기 지정 */
+        .wrap2 { /* box1,2의 부모*/
+            width: 200px;
+            height: 100px;
+        }
+        .wrap2 > .box1 {
+            /* % 단위는 부모 크기가 기준이다. */
+            width: 100%; /*200px*/
+            height: 50%; /*50px*/
+            background-color: lightblue;
+        }
+        .wrap2 > .box2 {
+            width: 50%;  /*100px*/
+            height: 50%; /*50px*/
+            background-color: lightpink;
+        }
+    </style>
+    <div class="wrap2">
+        <div class="box1">BOX1</div>
+        <div class="box2">BOX2</div>
+    </div>
+
+    <hr>
+
+    <style>
+        .wrap3 > div {
+            width: 100px;
+            height: 100px;
+        }
+        .wrap3 > .box1 {
+            /*
+                border 단축 속성 (속성값 3개 들어감)
+                : border-width  border-style  border-color
+                       3px          solid         gray
+                solid-실선
+            */
+            border: 1px solid gray;
+        }
+        .wrap3 > .box2 { /* 박스 크기가 달라진다. 100*100에서 테두리에 두께주면 박스 크기에 영향을 줌. */
+            border-top: 3px solid pink;
+            border-bottom: 3px solid pink;
+            border-left: 3px solid gray;
+            border-right: 3px solid gray;
+        }
+    </style>
+    <div class="wrap3">
+        <div class="box1">BOX1</div>
+        <div class="box2">BOX2</div>
+    </div>
+
+    <style>
+        .wrap4 > div {
+            width: 100px;
+            height: 100px;
+            border:1px solid gray;
+        }
+        .wrap4 > .box1 {
+            /* 모따기 4가지 방법 */
+            border-radius: 3px;
+            border-radius: 3px 6px;
+            border-radius: 3px 6px 3px;
+            border-radius: 3px 6px 3px 6px; /* 왼쪽 위부터 시계방향으로 *//* 한 군데만 주려면 나머지를 0으로 하면 됨.*/
+        }
+    </style>
+    <div class="wrap4">
+        <div class="box1">BOX1</div>
+        <div class="box2">BOX2</div>
+    </div>
+
+    <hr>
+
+    <style>
+        /* padding : 박스의 안쪽 여백 4가지방법 */
+        /* margin : 박스와 박스 사이의 여백 */
+    </style>
+
+
+</body>
+</html>
