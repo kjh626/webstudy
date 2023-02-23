@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+        /* 모든 박스에 적용 */
+        div {
+            box-sizing: border-box;
+            border: 1px solid gray;
+        }
+    </style>
+
+    <style>
+        /* 1. 박스 = 이미지. 이게 제일 무난한 방법(2개를 맞추는 방법) 이거라도 기억해라 */
+        /* attach1 이미지 파일의 너비가 100이고 높이가 76 */
+        .box1 {
+            width: 50px;
+            height: 38px;
+            background-image: url('../../images/attach1.png');
+            background-size: 50px 38px;    /* 너비 높이 순으로 크기 작성. 박스크기랑 맞춰줘야 깔끔하게 배경으로 사용 가능 */
+            /* !비율 맞춰서! 둘다 절반으로 떨어트리는 방법도 가능 50 38  50 38 . 중요한 것은 박스의 크기와 이미지의 크기를 맞추는 것*/
+        }
+    </style>
+    <div class="box1"></div>
+
+    <hr>
+
+    <style>
+        /* 2. 박스 > 이미지. 아마 공간이 남을 거임 */
+        .box2 {
+            width: 200px;
+            height: 152px;
+            background-image: url('../../images/attach1.png'); /*이미지가 체크무늬로 4개나옴*/
+            background-repeat: no-repeat; /* 디폴트는 repeat. repeat 4개 있다. repeat,-x,-y,no-repeat */
+            background-position: center;
+        }
+    </style>
+    <div class="box2"></div>
+
+    <hr>
+
+    <style>
+        /* 3. 박스 < 이미지. 박스가 작아서 이미지가 잘릴 거임 */
+        .box3 {
+            width: 100px;
+            height: 38px;
+            background-image: url('../../images/attach1.png'); /* 반 잘려서 나온다. */
+            background-size: cover; /* 너비/높이 중에서 큰 값에 맞춰줌. 흔히 cover를 씀. 이미지가 크면 차라리 cover로 잘라라 */
+        }
+        .box4 {
+            width: 100px;
+            height: 38px;
+            background-image: url('../../images/attach1.png'); /* 반 잘려서 나온다. */
+            background-size: contain; /* 너비/높이 중에서 작은 값에 맞춰줌 */
+        }
+    </style>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    
+    <hr>
+
+    <!-- 그림이 엄청 크고 박스가 작을 경우. 그림을 옮기면서 작은 구멍으로 봐야한다.
+    위쪽으로 , 왼쪽으로 = - 방향임. 
+    우리가 가진 image파일 중에서, logo.png/weather.png 를 참고하면 된다.
+    큰 이미지에서 하나씩 보이게 해서(잘라서 볼 수 있도록) 사용한다.
+    naver 회원가입 화면에서 자물쇠 이미지 어떻게? 이런 방식으로 하나의 큰 이미지에서 잘라서 보여주는 방식으로 작업한 거임.
+    큰 이미지를 백그라운드로 쓰고 포지션만 바꿔주면서 사용하는 거다. -->
+    <style>
+        /* 4. 박스로 이미지 일부만 표시하기 */
+        .box5 {
+            width: 120px;
+            height: 120px;
+            background-image: url('../../images/weather.png');
+            /* 박스는 가만히 있고 뒤에 그림이 움직이는 거라고 생각 */
+            background-position: -145px 0; /* 가로 세로 방향으로 작성 (-(마이너스)이면 왼쪽으로 이동한다는 뜻) */
+        }
+    </style>
+    <!-- weather.png 844 x 1280 -->
+    <div class="box5"></div>
+
+    <hr>
+    <!-- 연습문제 -->
+    <style>
+        .box6 {
+            width: 1440px;
+            height: 960px;
+            background-image: url('../../images/nature5.jpg');
+            background-size: 100% 100%;  /* 박스 크기 기준 */
+            background-blend-mode: multiply; /* 원래 이미지에 회색 필터를 끼운 느낌 */
+            background-color: gray;    /* 원래 이미지에 회색 필터를 끼운 느낌 */
+            border: 5px solid gray;
+            margin: 0 auto;    /* 상하 여백:0, 좌우 여백을 auto로 지정. 좌우 margin을 auto로 지정하면 해당 박스가 부모의 가운데에 배치된다.(현재 부모가 body임) */
+            font-size: 80px;
+            font-weight: 900;
+            color: #FFFFFF;
+            text-align: center;  /* 가로 가운데 정렬. 세로 가운데 정렬은 없다.. */
+            line-height: 960px;  /* 박스 height와 line-height를 같은 값으로 맞추면 세로 가운데 정렬 효과가 나타난다.(텍스트가 1줄일 때만 가능) */
+            /* 박스의 높이가 정해져 있으면 line-height를 써서 세로 가운데 정렬을 하고 
+            박스의 높이가 안 정해져 있을 때 padding값을 써서 세로 가운데 정렬을 해준다.*/
+
+        }
+    </style>
+    <!-- 1920*1280 이미지를 3/4 사이즈로 맞춰서 만들기 + 가운데 텍스트를 유사하게 배치해보기 -->
+    <div class="box6">
+        이 눈을 언제 치우지...
+    </div>
+
+    <hr>
+    <style>
+        .box7 {
+            box-sizing:border-box;
+            width: 960px;
+            height: 636.5px;
+            margin: 0 auto;
+            background-image: url('../../images/architecture2.jpg');
+            background-size: 100% 100%;
+        }
+        .box8 {
+            width: 960px;
+            /* height가 없음! */
+            margin: 20px auto 0;
+            border: 5px solid rgb(126, 49, 214);
+            border-radius: 10px;
+            background-color:lightblue;
+            font-size: 36px;
+            text-align: center;
+            padding: 10px 0; /* 박스 height가 없는 경우 상하 padding을 통해 세로 가운데 정렬 효과 */
+        }
+    </style>
+    <div class="box7"></div>
+    <div class="box8">에펠탑</div>
+</body>
+</html>
