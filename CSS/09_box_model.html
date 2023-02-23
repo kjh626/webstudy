@@ -93,9 +93,9 @@
         }
         .wrap4 > .box1 {
             /* 모따기 4가지 방법 */
-            border-radius: 3px;
-            border-radius: 3px 6px;
-            border-radius: 3px 6px 3px;
+            border-radius: 3px;         
+            border-radius: 3px 6px;     /* 13 24 대각선*/
+            border-radius: 3px 6px 3px; /* 1 24 3 */
             border-radius: 3px 6px 3px 6px; /* 왼쪽 위부터 시계방향으로 *//* 한 군데만 주려면 나머지를 0으로 하면 됨.*/
         }
     </style>
@@ -107,10 +107,104 @@
     <hr>
 
     <style>
-        /* padding : 박스의 안쪽 여백 4가지방법 */
-        /* margin : 박스와 박스 사이의 여백 */
-    </style>
+        /* padding : 내부 여백 4가지 방법*/
 
+        .wrap5 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+        } 
+        .wrap5 > .box1 {
+            padding: 5px;
+            padding: 5px 10px;          /*위아래가 5 좌우가 10*/
+            padding: 5px 10px 5px;      /*위 5 좌우 10 아래 5*/
+            padding: 5px 10px 5px 10px; /*위에부터 시계방향으로*/
+        }
+       .wrap5 > .box2 {
+            padding-top: 10px;
+            padding-bottom: 10px; 
+            padding-left: 10px;
+            padding-right: 10px;
+       }
+       </style>
+    <div class="wrap5">
+        <div class="box1">BOX1</div>
+        <div class="box2">BOX2</div>
+    </div>
+    <!-- 크기 지정 너비 100px + 테두리 2px + padding 20px : 122px 
+         너비는 122 내용물이 100px짜리 박스임.
+         그래서 이 박스를 내용물 박스라고 한다.(=content-box)-->
+    
+    <hr>
+    
+    <style>
+        /* margin : 바깥 여백 */
+        
+        .wrap6 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+        }
+        .wrap6 > .box1 {
+            margin: 10px;
+            margin: 10px 5px;
+            margin: 10px 5px 10px;
+            margin: 10px 5px 10px 5px;
+        }
+        .wrap6 > .box2 {
+            margin-top: 10px;    /* margin끼리 겹치면 둘 다 적용 X, 하나만 적용(나중 것 적용) */
+            margin-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+    <div class="wrap6">
+        <div class="box1">BOX1</div>
+        <div class="box2">BOX2</div>
+    </div>
+    <!-- 사이트에서 F12 눌러서 왼쪽위에 inspect클릭해서 박스 눌러볼 수 있음. Elements탭-->
+    
+    <hr>
+
+    <style>
+        /* 
+            box-sizing 속성 
+            1. box-sizing: content-box
+                1) 디폴트 (생략하면 적용된다.)
+                2) width와 height는 내용물(content)이 표시될 영역의 크기이다.
+                3) 박스 크기는 width/height + border-width(두께) + padding로 계산할 수 있다.
+            2. ★box-sizing: border-box★ ★box-sizing의 핵심
+                1) width와 height는 테두리(border)까지 영역의 크기이다.
+                2) 박스 크기는 width/height와 같다.
+                3) border-width와 padding이 사용된 만큼 내용물(content)이 표시될 영역이 줄어든다.
+        */
+        .wrap7 {
+            width: 300px;
+            height: 300px;
+        }
+
+        .wrap7 > .box1 {
+            box-sizing: content-box; /* 생략가능 */
+            width: 100px;
+            height: 100px;
+            border: 5px solid gray;
+            padding: 10px;
+            /* 박스의 실제 크기 : 100px + 5px * 2 + 10px * 2 = 130px */
+        }
+
+        .wrap7 > .box2 {
+            box-sizing: border-box; /* 너비 100짜리 필요하면 박스사이징을 보더박스를 쓰면 된다. */
+            width: 100px;
+            height: 100px;
+            border: 5px solid gray;
+            padding: 10px;
+            /* content가 줄어들어 70이 됨. */
+        }
+    </style>
+    <div class="wrap7">
+        <div class="box1">BOX1</div>
+        <div class="box2">BOX2</div>
+    </div>
 
 </body>
 </html>
