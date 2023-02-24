@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .wrap1 > img:nth-of-type(2) {
+            /* 자리는 차지하고 안 보인다. */
+            visibility: hidden;
+        }
+    </style>
+    <div class="wrap1">
+        <img src="../../images/flower1.jpg" width="200px">
+        <img src="../../images/flower2.jpg" width="200px">
+        <img src="../../images/flower3.jpg" width="200px">
+    </div>
+
+    <style>
+        .wrap2 > div {
+            width: 200px;   /* 이미지 싸개를 만들어줌. 크기 지정까지 해주고 */
+        }
+        .wrap2 > div > img {
+            width: 100%;   /* 싸개에 크기를 맞춰줌 */
+        }
+        .wrap2 > div:hover > img {
+            visibility: hidden;     /* div는 너비지정 가능. 싸개에 마우스를 올렸을 경우 히든 명령 가능하다. 
+                                       그림이 사라져도 warp은 그대로라 hover속성이 없어지지 않는다. img에 hover하면 이미지 사라지면 어딨지하고 찾으면서 버벅거림*/
+        }
+    </style>
+    <div class="wrap2">
+        <div><img src="../../images/flower1.jpg"></div>
+        <div><img src="../../images/flower2.jpg"></div>
+        <div><img src="../../images/flower3.jpg"></div>
+    </div>
+
+    <style>
+        .wrap3 .b {
+            visibility: hidden;
+        }
+        .wrap3 > .a {
+            border: 1px solid gray;
+            background-color: lightgray;
+        }
+        .wrap3 > .a:hover + .b {
+            visibility: visible;
+        }
+    </style>
+
+    <div class="wrap3">
+        <h1>다음 중 블록레벨이 아닌 태그는 무엇인가요?</h1>
+        <ol>
+            <li>&lt;div&gt;</li>
+            <li>&lt;ul&gt;</li>
+            <li>&lt;a&gt;</li>
+            <li>&lt;p&gt;</li>
+            <li>&lt;table&gt;</li>
+        </ol>
+        <span class="a">정답보기</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="b"> 3 </span>
+        
+    </div>
+
+
+</body>
+</html>
