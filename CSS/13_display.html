@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+        .wrap1 > img:nth-of-type(2) {
+            /* 자리도 차지하지 않고 안 보인다. 레이아웃에 영향을 미침. 웹페이지 모양이 바뀐다.*/
+            display: none;
+        }
+    </style>
+    <div class="wrap1">
+        <img src="../../images/flower1.jpg" width="200px">
+        <img src="../../images/flower2.jpg" width="200px">
+        <img src="../../images/flower3.jpg" width="200px">
+    </div>
+
+    <!-- 실제로 우리가 해야할 작업임. 잘 기억할 수 있도록 
+        네이버 회원가입에 체크하는 거 체크박스로 보인다.
+        체크박스가 숨었다. 숨은 자리에 이미지가 나왔다고 생각해라-->
+    <style>
+        /* #all {
+            display: none;
+        } */
+        .wrap2 input[type=checkbox] {
+            display: none;
+        }
+        .wrap2 label {
+            padding-left: 20px;
+            background-image: url('../../images/check1.png');
+            background-size: 16px 16px;
+            background-repeat: no-repeat;
+            background-position: 0 3px;   /* 이미지 살짝 아래로 내리기 */
+        }
+        .wrap2 > input[type=checkbox]:checked + label {
+            background-image: url('../../images/check2.png');
+        }
+    </style>
+    <div class="wrap2">
+        <input type="checkbox" id="all">
+        <label for="all">모두 동의합니다</label>
+        <input type="checkbox" id="service">
+        <label for="service">서비스 이용약관에 동의합니다</label>
+        <!-- 영역 내부 여백 : padding -->
+        <!-- 영역 외부 여백 : margin -->
+    </div>
+    <!-- 디스플레이가 중요한 이유 : 블록을 인라인으로, 인라인을 블록으로 바꿀 수 있다.
+        인라인의 치명적인 약점 : 높이 너비를 지정해주지 못함. 
+        인라인 : <a>, <label>, <span> -->
+
+    <style>
+        /* 블록 -> 인라인 */
+        .wrap3 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            display: inline;    /* 인라인 요소로 바꾸기 */
+        }
+    </style>
+    <div class="wrap3">
+        <div>BOX1</div>
+        <div>BOX2</div>
+    </div>
+
+    <style>
+        /* 인라인 -> 블록 */
+        .wrap4 > a {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border: 1px solid gray;
+            display: block;    /* 블록 요소로 바꾸기 */ /* a링크가 커져서 이제 글자가 아닌 곳 클릭해도 된다. a링크가 너비높이를 가진다. */
+        }
+    </style>
+    <div class="wrap4">
+        <a href="javascript:void(0)">링크1</a>
+        <a href="javascript:void(0)">링크2</a>
+    </div>
+
+    <style>
+        /* 인라인 -> 블록, 블록 요소들을 같은 줄에 배치. 수평 레이아웃 잡는 방법! */
+        .wrap5 > a {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border: 1px solid gray;
+            display: inline-block;    /* 인라인 블록 요소로 바꾸기 */
+        }
+    </style>
+    <div class="wrap5">
+        <a href="javascript:void(0)">링크1</a>
+        <a href="javascript:void(0)">링크2</a>
+    </div>
+
+</body>
+</html>
