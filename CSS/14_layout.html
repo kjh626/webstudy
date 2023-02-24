@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+        /*
+            float 속성 (부유물)
+            1. HTML 요소들의 기본 배치(상->하, 좌->우)를 벗어날 때 사용한다.
+            2. 왼쪽이나 오른쪽 영역에 배치시킬 수 있다. (예시: box1을 뜯어서 왼쪽이나 오른쪽에 놓겠다.)
+        */
+        .wrap1 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+        }
+        .wrap1 > .box1 {
+            float: left;
+        }
+        .wrap1 > .box2 {
+            float: right; /* float box1,2 해버리면 그 자리에 텍스트들이 다 위로 끌어올려짐. 잘 모르면 쓰지마라 망가진다. */
+        }
+    </style>
+    
+    <!-- 블록레벨(대표적 div)을 수평 레이아웃으로 잡으려면 부모가 필요하다. -->
+    <div class="wrap1">
+        <div class="box1">BOX1</div>
+        <div class="box2">BOX2</div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla massa eu nisl rhoncus gravida. Sed dapibus felis placerat lectus porta, eu maximus justo sagittis. Sed consequat, arcu quis condimentum tempus, nibh augue bibendum neque, id tristique nisl purus id felis. Pellentesque suscipit luctus augue, eget fringilla eros. Duis molestie sapien sed erat feugiat, vitae blandit felis accumsan. Nulla quis magna sed justo vestibulum ultricies. Morbi sit amet pellentesque erat. Duis sollicitudin leo nibh, sit amet iaculis lectus cursus non. Integer posuere massa sed aliquam lobortis. Phasellus blandit erat quam, a viverra libero laoreet sit amet. Donec tempus ultricies erat quis aliquam.
+    </div>
+
+    <style>
+        /*
+            overflow 속성
+            1. 영역을 벗어난 콘텐츠에 적용되는 속성이다.
+            2. 영역을 벗어난 콘텐츠를 숨기거나 스크롤 처리한다.
+        */
+        .wrap2 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            display: inline-block;
+        }
+        .wrap2 > .box1 {
+            overflow: hidden;
+        }
+        .wrap2 > .box2 {
+            overflow-x: scroll; /* 가로 방향의 스크롤이 생긴다. */
+            overflow-y: scroll; /* 세로 방향의 스크롤이 생긴다. */
+        }
+        .wrap2 > .box3 {
+            overflow: scroll;
+        }
+
+    </style>
+    <div class="wrap2">
+        <div class="box1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div class="box2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div class="box3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+    </div>
+
+    <hr>
+
+    <style>
+        /*
+            블록을 좌우로 배치하는 방법 - 1 (one true layout) - 일종의 약속된 패턴이라고 봐라
+            1. 부모 요소에 overflow: hidden 처리한다.
+            2. 자식 요소를 float: left; (또는 float: right;) 처리한다.
+              ※ 이해하려고 노력하지말고 그냥 배워서 쓰셈!
+        */
+        .wrap3 {
+            overflow: hidden;
+        }
+        .wrap3 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            float: left;
+        }
+    </style>
+    <div class="wrap3">
+        <div>BOX1</div>
+        <div>BOX2</div>
+    </div>
+
+    <style>
+        /*
+            블록을 좌우로 배치하는 방법 - 2 
+            1. 부모 요소를 display: flex; 처리한다.
+            2. 그럼 끝. 엄청 쉽다! 부모만 찾아서 display: flex; 주면 된다.
+            소소한 배치법에 대한 옵션이 있다. 
+        */
+        .wrap4 {
+            display: flex;
+        }
+        .wrap4 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+        }
+    </style>
+    <div class="wrap4">
+        <div>BOX1</div>
+        <div>BOX2</div>
+        <div>BOX3</div>
+        <div>BOX4</div>
+        <div>BOX5</div>
+    </div>
+
+</body>
+</html>
