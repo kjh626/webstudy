@@ -95,8 +95,18 @@
             2. 그럼 끝. 엄청 쉽다! 부모만 찾아서 display: flex; 주면 된다.
             소소한 배치법에 대한 옵션이 있다. 
         */
+        div {
+            box-sizing: border-box;
+        }
         .wrap4 {
             display: flex;
+            flex-wrap: nowrap;         /* nowrap : 디폴트, 부모 영역으로 자식들을 모두 모으는 방식, wrap : 자식들의 크기를 유지하기 때문에 부모 영역을 벗어날 수 있는 방식 */
+            flex-direction: row;       /* row, row-reverse, column, column-reverse */
+            justify-content: space-between; /* center, space-around, space-between */
+
+            width: 600px;
+            height: 100px;
+            background-color: antiquewhite;
         }
         .wrap4 > div {
             width: 100px;
