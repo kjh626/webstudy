@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+        /*
+            position: static;
+            1. 디폴트 값이다. (position을 지정하지 않으면 static이다.)
+            2. HTML 기본 배치를 따른다.
+            3. 상대적 위치 조정(top, bottom, left, right)이 불가능하다. (left값 주면 그 값만큼 떨어지는 것)
+        */
+        .wrap1 > div {
+            width: 300px;
+            height: 100px;
+            border: 1px solid gray;
+            /* position: static; 은 아래 메뉴가 동작하지 않는다. */
+            top: 50px;    /* 위에서 50px 떨어뜨리기 (아래로 50px 이동) */
+            left: 50px;   /* 왼쪽에서 50px 떨어뜨리기 (오른쪽으로 50px 이동). */
+        }
+    </style>
+    <div class="wrap1">
+        <div>static BOX</div>
+    </div>
+
+    <style>
+        /*
+            position: relative;
+            1. HTML 기본 배치를 따른다.
+            2. 상대적 위치 조정(top, bottom, left, right)이 가능하다.
+            3. 원래 자신의 위치를 기준으로 top, bottom, left, right가 동작한다.
+        */
+        .wrap2 > div {
+            width: 300px;
+            height: 100px;
+            border: 1px solid gray;
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
+    </style>
+    <div class="wrap2">
+        <div>relative BOX</div>
+    </div>
+</body>
+</html>
