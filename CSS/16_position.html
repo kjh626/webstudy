@@ -54,8 +54,8 @@
             position: absoulute;
             1. HTML 기본 배치를 따르지 않는다.
             3. 상대적 위치 조정(top, bottom, left, right)이 가능하다.
-            3. 부모 요소의 position: static;이 아닌 경우 부모 요소를 기준으ㄹ top, bottom, left, right가 동작한다.
-            4. 일반적으로 부모 요소가 position:relative를 가지고 자식 요소가   position: abuloute를 죽힌다.
+            3. 부모 요소의 position: static;이 아닌 경우 부모 요소를 기준으로 top, bottom, left, right가 동작한다.
+            4. 일반적으로 부모 요소가 position:relative를 가지고 자식 요소가 position: absolute;를 가진다.
         */
         .wrap3 {
             margin-top: 100px;
@@ -78,14 +78,16 @@
     </div>
 
     <style>
+        /* position: absoulute; 연습 */
         .wrap4 {
             margin-top: 50px;
-            width:200px;
-            height:50px;
+            width: 300px;
+            height: 50px;
             border: 1px solid gray;
             position: relative;    /* position: relative 자식들 위치 주기 위해서(absolute) */
         }
         .wrap4 > .btn_box {
+            box-sizing: border-box;
             width: 80px;
             height: 40px;
             position: absolute;
@@ -109,7 +111,7 @@
             <div>&lt;</div>
             <div>&gt;</div>
             <!-- 박스가 많아져서 너비를 초과할 경우 알아서 너비가 맞춰지는데 이는 flex-wrap 옵션에서 nowrap이 디폴트 설정이라 그런거임.
-                 nowrap 설정이면 안에 우겨넣어주고, wrap이면 아래로 삐져 나갔음. -->
+                 nowrap 설정이면 안에 우겨넣어주고, wrap이면 아래로 삐져 나갔음.(wrap : 자식들의 크기를 유지하기 때문에 부모 영역을 벗어날 수 있는 방식) -->
         </div>
     </div>
 
@@ -135,14 +137,13 @@
         <div>fixed BOX</div>
     </div>
 
-    <!-- 연습 문제 -->
-    <hr>
     <style>
+        /* position: absolute; 연습 */
         .wrap6 {
+            margin-top: 10px;
             width: 300px;
             height: 300px;
             border: 1px solid gray;
-            padding: 10px;
             position: relative;
         }
         .wrap6 > div {
@@ -160,11 +161,11 @@
             top: 10px;
         }
         .wrap6 > div.autumn {
-            left: 10px;
+            right: 10px;
             bottom: 10px;
         }
         .wrap6 > div.winter {
-            right: 10px;
+            left: 10px;
             bottom: 10px;
         }
     </style>
