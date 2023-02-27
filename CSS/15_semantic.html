@@ -7,8 +7,18 @@
     <title>Document</title>
     
     <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
         /* CSS 초기화 */
+        /* 블록 태그들임 (header, section, article, footer, aside, nav은 div들이라고 보면 됨) */
+        /* 의미를 가지고있는 div들을 semantic이라고 부른다 */
         * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        body, header, section, article, footer,
+        aside, nav, h1, h2, h3, h4, h5, h6,
+        div, p, pre, ul, ol, li, dl, dt, dd {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
@@ -17,7 +27,12 @@
             color: gray;
             text-decoration: none;
         }
+        ul,ol {
+            list-style-type: none;
+        }
         
+
+
         body {background-color: lightgray;}
         header > h1 {
             width: 1440px;
@@ -70,6 +85,15 @@
             width: 1000px;
             height: 300px;
             padding: 10px;
+            flex: 3;   /* width: 75%;(= flex:3;) */
+        }
+        .main_section > .right_section {
+            border: 1px solid gray;
+            width: 420px;
+            height: 300px;
+            padding: 10px;
+            margin: 0 0 0 20px;
+            flex: 1;   /* width: 25%;(= flex:1;). flex값에 숫자를 주면 flex값의 합산값을 분모로 쓴다. 너비:75%이렇게 써도 된다.*/
         }
         .main_section > .left_section > article {
             background-color: white;
@@ -80,13 +104,6 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
-        .main_section > .right_section {
-            border: 1px solid gray;
-            width: 420px;
-            height: 300px;
-            padding: 10px;
-            margin: 0 0 0 20px;
         }
         .main_section > .right_section > article {
             background-color: white;
