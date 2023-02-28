@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        /*
+            transition  <- 변하는 걸 볼 수 있다. 애니메이션과 느낌이 비슷.
+            1. 특정 속성이 이행(transition)되는 과정을 볼 수 있다.
+            2. 주요 이행 속성
+                all(디폴트) : 모든 속성의 이행과정을 보겠다. , 너비가 변하는 걸 보겠다.
+                , width, height, margin, padding (세팅에 따라 패팅값이 커지면 박스가 커질 수도 있다.)
+                background, border
+                opacity, visibility
+                transform(변형) - 형태가 변할 때 볼 수 있도록 transition이랑 같이 쓴다.
+            ※ 이미지 바뀔 때 훅훅 바뀌지 않고 변하는 게 보인다...
+        */
+    </style>
+    <style>
+        .box1 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            /* 박스의 크기 변화를 이행(transition) 처리하기 */
+            transition-property: all;             /* 모든 속성의 변화를 볼 수 있다. */
+            transition-duration: 3s;              /* 3초 동안 속성의 변화를 볼 수 있다. */
+            transition-timing-function: linear;   /* 일정한 속도(linear)로 변하는 속성의 변화를 볼 수 있다. */
+            transition-delay: 1s;                 /* 1초 후에 이행(transition) 동작이 동작한다. */
+        }
+        .box1:hover{
+            width: 200px;
+        }
+        .box1:active {
+            height: 200px;
+        }
+    </style>
+    <div class="box1">BOX</div>
+
+
+    
+</body>
+</html>
