@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 반응형 웹 만들기 bmw홈피 좁을때: 햄버거 메뉴, 넓으면 풀림 => 페이지를 2개 만들었다.(너비에 따른 구간이 있다.)
+          F12 왼쪽 상단에 토글 있음. 웹페이지 작게 해서 볼 수 있음. 페이지 왼쪽 위 어떤 장치 기준으로 할 건지 크기 보여주는 버튼도 있음.
+          박스의 모양이 너비에 따라 달라진다.(줄이면 한줄 2개가 1개로 바뀌는 등..)
+        ※ 반응형 웹 해본 경험이 없는데 프로젝트에서 섣불리 시작하지 마라.-->
+
+    <style>
+        /*
+            반응형 웹
+            1. 웹을 이용하는 기기에(장치)에 따라 페이지의 레이아웃이 곧바로 변하는 웹 기능이다.
+            2. 화면의 크기나 방향 등에 의해서 페이지의 레이아웃이 결정된다.
+            3. 반응형 웹 설정을 위해서 뷰포트(viewport) 설정이 필요하다.
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  content에 속성 2개 들어간 것
+                1) width=device-width  : 화면의 너비를 장치의 너비와 맞춘다.
+                2) initial-scale=1.0   : 기본 크기는 100% 크기를 사용한다.(1.0배)
+            4. 미디어 쿼리(mediaquery)  ★핵심은 미디어 쿼리를 작성하는 법!
+                1) 화면의 크기 변화를 감지하는 CSS 모듈이다.
+                2) 선언 : @media
+                3) 화면의 종류 : screen(화면 ※거의 screen), speech(낭독기), print(출력물), all(모든 미디어)
+                4) 조건 : 화면의 크기 또는 방향에 따라서 작성
+                    (1) width: 640px            너비가 정확히 640px인 경우에 적용된다. (딱 맞추는 경우 거의 없음. 잘 사용 X)
+                    (2) min-width: 640px        최소 640px인 경우(640px 이상인 경우에 적용)
+                    (3) max-width: 640px        최대 640px인 경우(640px 이하인 경우에 적용) => (2), (3)을 많이 사용
+                    (4) orientation: portrait   장치를 세워서 볼 때 적용된다.
+                    (5) orientation: landscape  장치를 눕혀서 볼 때 적용된다.
+        */
+    </style>
+
+    <style>
+        /* 1. 너비에 따른 배경색 변경하기 */  /* 반응형 웹이란 것은 CSS를 여러 개 만드는 것이구나! */
+        @media screen and (max-width: 640px) {    /* 너비가 640px 이하인 경우에 적용된다. */
+            body {
+                background-color: pink;
+            }
+        }
+        @media screen and (min-width: 641px) and (max-width: 768px) {    /* 너비가 641px 이상 768px 이하인 경우에 적용된다. */
+            body {
+                background-color: orange;
+            }
+        }
+        @media screen and (min-width: 769px) {    /* 너비가 769px 이상인 경우에 적용된다. */
+            body {
+                background-color:cadetblue;
+            }
+        }
+    </style>
+
+    <!-- 레이아웃의 구성 할 거임. 크기 줄어들면 박스 두 개씩 보여주다가 한 개씩 보여주기 
+         ※ 연습은 웹페이지 베껴보기 가 가장 연습이 잘 된다.-->
+</body>
+</html>

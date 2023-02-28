@@ -14,13 +14,14 @@
             1. 특정 속성이 이행(transition)되는 과정을 볼 수 있다.
             2. 주요 이행 속성
                 all(디폴트) : 모든 속성의 이행과정을 보겠다. , 너비가 변하는 걸 보겠다.
-                , width, height, margin, padding (세팅에 따라 패팅값이 커지면 박스가 커질 수도 있다.)
+                , width, height, margin, padding (세팅에 따라 패딩값이 커지면 박스가 커질 수도 있다.)
                 background, border
                 opacity, visibility
                 transform(변형) - 형태가 변할 때 볼 수 있도록 transition이랑 같이 쓴다.
             ※ 이미지 바뀔 때 훅훅 바뀌지 않고 변하는 게 보인다...
         */
     </style>
+
     <style>
         .box1 {
             width: 100px;
@@ -41,7 +42,51 @@
     </style>
     <div class="box1">BOX</div>
 
+    <style>
+        .box2 {
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            /* 변형(transform) 속성이 3초 동안 이행(transition)되는 과정을 보겠다. */
+            transition-property: transform;
+            transition-duration: 3s;
+        }
+        .box2:active {
+            transform: scale(2, 2);   /* 가로 2배, 세로 2배 크기 변경 */
+        }
+    </style>
+    <div class="box2">BOX2</div>
 
-    
+    <style>
+        .box3 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            /* 변형(transform) 속성이 1초동안 이행(transition)되는 과정을 보겠다. */
+            transition-property: transform;
+            transition-duration: 1s;
+        }
+        .box3:active {
+            transform: translate(300px, 100px);    /* 가로 방향으로 300px, 세로 방향으로 100px 이동하기 */
+        }
+    </style>
+    <div class="box3">BOX3</div>
+
+    <style>
+        .box4 {
+            margin: 0 auto;
+            width: 200px;
+            height: 50px;
+            border: 1px solid gray;
+            border-radius: 25px;
+            transition-property: transform;
+            transition-duration: 1s; /* 실제로 쓸 때는 짧게 준다. 그리고 과하지 않게 쓰면 됨 */
+        }
+        .box4:active {
+            transform: rotate(1080deg);
+        }
+    </style>
+    <div class="box4">BOX4</div>
 </body>
 </html>
