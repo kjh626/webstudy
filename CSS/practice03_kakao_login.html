@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+            font-size:12px;
+        }
+        
+        .kakao_image {
+            display: block;
+            width: 88px;
+            height: 27px;
+            background-image: url(https://accounts.kakaocdn.net/images/pc/logo_kakao.png);
+            background-size: 100px 80px;
+            margin: 50px auto ;
+            line-height: 27px;
+            text-align: center;
+        }
+        .content-article {
+            border: 1px solid gray;
+            width: 580px;
+            height: 497px;
+            margin: 40px auto 42px;
+            padding: 0 69px;
+            box-sizing: border-box;
+        }
+        .cont_login {
+            width: 440px;
+            margin: 0 auto;
+            padding: 55px 0;
+        }
+        .id_wrap {
+            margin: 3px 0;
+        }
+        .pw_wrap {
+            margin: 3px 0;
+        }
+        .input_wrap {
+            border-bottom: 2px solid lightgray;
+            width: 440px;
+            margin: 0 auto;
+        }
+        .input_wrap:focus > input {
+            padding: 10px 0;
+            border-bottom: 2px solid black;
+        }
+        .input_wrap > input {
+            width: 440px;
+            padding: 3px;
+            border: 0;     /* 평소에 보이는 테두리를 없앤다. */
+            outline: 0;    /* 포커스를 가질 때 테두리를 없앤다. */
+            margin: 5px 0;
+            font-size: 18px;
+        }
+        .set_login {
+            width: 440px;
+            margin: 20px auto 10px;
+        }
+        .inp_choice {
+            display: none;
+        }
+        .ico_comm{
+            width: 20px;
+            height: 20px;
+            border: 0;
+            background: url(https://accounts.kakaocdn.net/images/pc/ico_comm.png);
+            background-size: 300px auto;
+            background-position: 0 0;
+        }
+        .item_choice > input[type=button] {
+            width: 18px;
+            height: 18px;
+            border: 0;
+            background-image: url(https://accounts.kakaocdn.net/images/pc/ico_comm.png);
+            background-size: 300px auto;
+            background-position: -120px -110px
+        }
+        .confirm_btn {
+            width: 440px;
+            margin: 30px auto 10px;
+            text-align: center;
+        }
+        .confirm_login {
+            display: block;
+            width: 440px;
+            height: 50px;
+            line-height: 50px;
+            background-color: #fee500;
+            border: 0;
+            border-radius: 5px;
+        }
+        .confirm_login:hover {
+            background-color: #e6cf06;
+        }
+        .confirm_or:before {
+            display: inline-block;
+            width: calc(50% - 20px);
+            height: 1px;
+            margin: 8px 0;
+            background-color: rgba(0,0,0,.06);
+            vertical-align: top;
+            content: "";
+        }
+        .confirm_or {
+            width: 440px;
+            height: 40px;
+            line-height: 40px;
+            margin: 10px 0;
+            font-size: 12px;
+        }
+        .confirm_or:after {
+            display: inline-block;
+            width: calc(50% - 20px);
+            height: 1px;
+            margin: 8px 0;
+            background-color: rgba(0,0,0,.06);
+            vertical-align: top;
+            content: "";
+        }
+        
+        .confirm_qrlogin {
+            display: block;
+            width: 440px;
+            height: 50px;
+            line-height: 50px;
+            background-color: #f0f0f0;
+            border: 0;
+            border-radius: 5px;
+        }
+        .confirm_qrlogin:hover {
+            background-color: #c7c5c5;
+        }
+        .info_user {
+            width: 440px;
+            height: 50px;
+            margin: 30px auto 0;
+            line-height: 50px;
+        }
+        .find_idpw {
+            float: right;
+        }
+        .service_info {
+            text-align: center;
+        }
+        .txt_copyright {
+            margin: 5px 0 0;
+            color: gray;
+            font-size:12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- container > inner_container -->
+    <div class="container-doc">
+        <div class="inner-container">
+            <main class="doc-main">
+                <div class="doc-title">
+                    <span class="kakao_image"></span>
+                </div>
+                <article class="content-article">
+                    <div class="cont_login">
+                        <div class="login_kakaomail">
+                            <form>
+                                <div class="id_wrap">
+                                    <div class="input_wrap">
+                                        <input type="text" placeholder="카카오메일 아이디, 이메일, 전화번호">
+                                    </div>
+                                </div>
+                                <div class="pw_wrap">
+                                    <div class="input_wrap">
+                                        <input type="password" placeholder="비밀번호">
+                                    </div>
+                                </div>
+                                
+                                <div class="set_login">
+                                    <div class="item_choice">
+                                        <input type="checkbox" id="staySignedIn--3" class="inp_choice" name="staySignedIn" value="false">
+                                        <label class="lab_choice" for="staySignedIn--3" id="label-staySignedIn"><span class="ico_comm"></span>로그인 상태 유지</label>
+                                        <input type="button" value="">
+                                    </div>
+                                </div>
+                                
+                                <div class="confirm_btn">
+                                    <button type="submit" class="confirm_login">로그인</button>
+                                    <div class="confirm_or">또는</div>
+                                    <button type="button" class="confirm_qrlogin">QR코드 로그인</button>
+                                </div>
+                                
+                            </form>
+                        </div>
+                        <div class="info_user">
+                            <a href="javascript:void(0)">회원가입</a>
+                            <span class="find_idpw">
+                                <a href="javascript:void(0)">계정 찾기</a>
+                                <a href="javascript:void(0)">비밀번호 찾기</a>
+                            </span>
+                        </div>
+                    </div>
+                </article>
+            </main>
+            <footer class="doc-footer">
+                <div class="service_info"> 
+                    <a href="javascript:void(0)" class="link_info">이용약관</a>
+                    <a href="javascript:void(0)" class="link_info"><strong>개인정보 처리방침</strong></a>
+                    <a href="javascript:void(0)" class="link_info">운영정책</a>
+                    <a href="javascript:void(0)" class="link_info">고객센터</a>
+                    <a href="javascript:void(0)" class="link_info">공지사항</a>
+                    <select name="language">
+                            <option value="korean">한국어</option>
+                            <option value="english">English</option>
+                            <option value="japanese">日本語</option>
+                    </select>
+                <div class="txt_copyright">Copyright © 
+                    <a class="link_kakaocorp" href="http://kakaocorp.com/">Kakao Corp.</a>
+                    All rights reserved.
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
