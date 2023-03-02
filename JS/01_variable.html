@@ -71,5 +71,76 @@
         */
     </script>
 
+    <script>
+        /*
+            JavaScript 출력 방식
+            1. 경고창 
+                alert(출력메시지)
+            2. 화면 출력
+                document.write(출력메시지) : 다큐먼트 객체 . 라이트 메소드를 쓴다.
+            3. 콘솔 출력 (개발자 도구 - Console 탭) (이클립스는 콘솔 창이 있지만...)
+                console.log(출력메시지)  -> 자바스크립트에서 찍은 코드는 Console탭에서 보는 것이 좋다.
+        */
+       //alert('Hello World');  // 세미콜론(;) 생략 가능.(실행문이 하나라면 생략 가능. 수업에서 일부러 빼지는 않을 것)
+       //document.write('<h1>Hello World</h1>'); // 태그도 적어줄 수 있다.
+       //console.log('Hello World');
+
+    </script>
+
+    <script>
+
+        // 변수 선언 후 초기화가 없으면 undefined 상태
+        var a;
+        console.log(a);
+
+        // 동일한 변수명으로 재선언 가능, 값이 저장되면서 타입이 결정된다.
+        var a;
+        a = 10;
+        console.log(a, typeof a);   //콤마(,)로 구분해서 2가지 이상 찍을 수 있음, 콘솔창에서는 공백으로 구분됨. typeof키워드를 통해 타입확인 가능
+
+        // 값이 변하면 타입이 변하는 동적 타입
+        a = 'Hello World';
+        console.log(a, typeof a);
+
+        // var 변수 선언은 생략 가능
+        b = false;
+        console.log(b, typeof b);
+
+        // 변수 선언이 항상 먼저 처리되는 호이스팅. => 변수선언 생략해도 되고 나중에 해도 되고 + 자료형 작성 X
+        c = Math.sqrt(-25); // Nan. Math라는 클래스에 루트 만드는 게 있음. 루트 -25는 없는 값임.
+        var c;              // 호이스팅
+        console.log(c, typeof c);
+
+    </script>
+
+    <script>
+        // '100' -> 100 으로 변환시켜주려면 자바에서는 Parse
+        // 함수도 있고 메소드도 있음. 
+        // parse(~~~);     -> 함수
+        // obj.parse(~~~); -> 메소드(객체가 불러오는 메소드)
+
+        /* 자료형 반환하기 */
+        
+        // 1. 문자열 -> 숫자
+        var a = '100';
+        var n1 = Number(a);     // a를 number로 바꿔주는 생성자 함수
+        var n2 = parseInt(a);   // function 함수라고 나온다.
+        console.log(a, n1, n2); // 콘솔창에 색깔이 다르게 찍힌다. 검정(string), 파랑(number)
+        
+        var b = '1.5';
+        var n3 = Number(b);
+        var n4 = parseFloat(b);   // 여기서는 자바와 달리 실수를 쓸 때 Double이라는 개념이 없어서 Float을 씀.
+        console.log(b, n3, n4);
+
+        // 2. 숫자 -> 문자열
+        var c = 200;
+        var str1 = String(c);     // string으로 바꿔주는 생성자 함수
+        var str2 = c + '';        // Java랑 똑같이 빈 문자열 더해줘도 된다.
+        console.log(c, str1, str2);     // 차이는 색깔로.. 따옴표도 붙네?
+
+
+    </script>
+
+
 </body>
 </html>
