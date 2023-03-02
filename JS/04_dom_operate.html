@@ -13,7 +13,7 @@
         // id는 javascript 용, class는 CSS 용 이라고 생각해도 된다.
         // 내부 텍스트 : textContent
         var box1 = document.getElementById('box1'); // 쿼리셀렉터를 쓰면 느리다.
-        box1.textContent = 'Hello World' // ((property)가 자바로 치면 필드임). 이걸로 쓰면 개발자도구의 Element에서 javascript로 썼는지도 모르게 되어있음. <div id="box1">Hello World</div> 이렇게 나옴.
+        box1.textContent = 'Hello World' // ((property)가 자바로 치면 필드임). 이걸로 쓰면 개발자도구의 Elements에서 javascript로 썼는지도 모르게 되어있음. <div id="box1">Hello World</div> 이렇게 나옴.
     </script>
 
     <div id="box2"><p>문단</p></div>
@@ -111,6 +111,7 @@
             외우지 말고 엘러먼트 창도 보고, 프로퍼티를 확인하려면 프로퍼티창을 봐야 한다.-->
     </div>
     <script>
+        // readonly 속성 없애기
         var inp = document.getElementById('inp');
         // inp.removeAttribute('readonly')   // 1) attribute를 아예 지워버리겠다.
         inp.readOnly = false;                // 2) true/false로 접근해서 readOnly 프로퍼티를 false로 직접수정  <- 이 방법을 많이 쓴다. (속성의 이름만 있는 애들: selected, disabled, readonly, required...)
@@ -118,6 +119,28 @@
         // ※ 예시) 사용자가 눈깔(이걸 이벤트라고 함)을 누르면 패스워드가 보이게 만들어 주기도 하는데. 이것은 type을 바꿔준 것이다(password -> text). 애트리뷰트나 프로퍼티를 바꿔준 것.
         //         이런 처리를 하는 데에는 자바스크립트를 쓰는 것이 가장 좋다. 그래서 자바스크립트 공부가 정말 중요하다. api같은 경우도 자바스크립트로 코드가 이뤄져 있는 경우도 있다.
     </script>
+
+    <style>
+        .red_text {
+            color: red;
+        }
+        .blue_text {
+            color: blue;
+        }
+    </style>
+    <div id="box7" class="red_text">Hello World</div>
+    <script>
+        // 파란색으로 바꿔보기
+        var box7 = document.getElementById('box7')
+        
+        // 1. 스타일 프로퍼티 부르기
+        // box7.style.color = 'blue';
+        // box7.style['color'] = 'blue';
+        // 2. 클래스 바꾸기
+        box7.setAttribute('class', 'blue_text'); // 이 방법을 많이 쓴다. 클래스를 미리 만들어 놓고 쓰는 방법 (예시) 성공할 때 초록, 실패했을 때 빨강)
+        // box7.className = 'blue_text';
+    </script>
+    <!-- 사이트 : w3school 웹 3총사 스쿨 HTML, CSS, JavaScript 3개 볼 만하다.-->
 
 </body>
 </html>
