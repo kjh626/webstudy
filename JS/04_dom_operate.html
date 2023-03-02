@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="box1"></div>
+    <script>
+        // id는 javascript 용, class는 CSS 용 이라고 생각해도 된다.
+        // 내부 텍스트 : textContent
+        var box1 = document.getElementById('box1'); // 쿼리셀렉터를 쓰면 느리다.
+        box1.textContent = 'Hello World' // ((property)가 자바로 치면 필드임). 이걸로 쓰면 개발자도구의 Element에서 javascript로 썼는지도 모르게 되어있음. <div id="box1">Hello World</div> 이렇게 나옴.
+    </script>
+
+    <div id="box2"><p>문단</p></div>
+    <script>
+        // textContent는 태그를 제외한 내부 텍스트만을 의미한다.
+        var box2 = document.getElementById('box2');
+        //box2.textContent = '링크'; // 이렇게 쓰면 a링크가 죽었다. 기존의 요소가 지워지고 덮어쓰기가 되는 방식임을 알 수 있다.
+        console.log(box2.textContent); // 데이터를 확인하는 과정. 링크라는 결과를 콘솔창에 찍어서 보여줄 것임.(태그를 제외한 순수 텍스트)
+        // 데이터를 조작하는 첫 번째 단계 -> 태그 사이의 글자를 확인하는 과정, 글자를 바꿀 수도 있음..
+    </script>
+
+    <div id="box3"></div>
+    <script>
+        // 내부 HTML 요소 : innerHTML  ⇔ textContent는 태그를 인식 못함.
+        var box3 = document.getElementById('box3');
+        box3.innerHTML = '<p>문단</p>';
+    </script>
+
+    <ul id="season"></ul>
+    <script>
+        // 내부 요소 추가를 위해서 + 연산자를 사용할 수 있다.
+        var season = document.getElementById('season');
+        season.innerHTML += '<li>봄</li>';   // 닫는 태그 없어도 잘 된다. 그래도 직접 완성하는 걸 권장함.
+        season.innerHTML += '<li>여름</li>';
+        season.innerHTML += '<li>가을</li>';
+        season.innerHTML += '<li>겨울</li>';  // 이거 배열{봄,여름,가을,겨울}이라 생각하면 언젠가는 for문으로 가능하지 않을까..
+    </script>
+
+
+</body>
+</html>
