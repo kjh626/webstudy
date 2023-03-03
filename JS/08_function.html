@@ -176,5 +176,57 @@
 
     </script>
 
+    <script>
+        /*
+            5. 반환
+                1) 반환 타입의 선언이 없다(변수 선언할 때도 타입이 없음)
+                2) return; 을 통해서 함수를 종료할 수 있다. (자바랑 똑같네)
+                3) return 값; 을 통해서 값을 반환할 수 있다. 
+                ※ 2), 3) 맘대로 쓰면 된다
+                ※ 로그인할 때 잘못 입력했으면 if문 써서 return 서브밋 하지 말자 라고 쓴다.
+        */
+
+        // 함수 정의
+        function func7(n) {
+            if(n == 0) {
+                return;    // 0이 전달되면 함수를 종료한다.
+            }
+            return n + 1; // 0이 아닌 값이 전달되면 1을 증가시켜 반환한다.
+        }
+
+        // 함수 호출
+        console.log(func7(10));  // 11이 출력됨.
+        console.log(func7(0));   // undefined. 함수 종료하고 아무것도 전달 안 했으니까 undefined 이다.
+    </script>
+
+    <script>
+        /*
+            6. 콜백 함수
+                1) 어떤 함수를 다른 함수에 인수로 전달하는 개념이다.
+                2) 인수로 전달된 함수를 저장한 매개변수가 콜백 함수이다.
+        */
+
+        // 선언적 함수(info)의 콜백
+        function info(data1, data2) {
+            console.log(data1, data2);
+        }
+        function func8(data1, data2, func) { // func가 콜백이다.
+            func(data1, data2);   // info('집에', '가고싶다.') 형식으로 호출된다.
+        }
+        func8('집에', '가고싶다.', info);
+
+
+        // 익명 함수의 콜백 - 주로 사용하는 방식
+        function func9(data1, data2, func) {
+            func(data1, data2);
+        }
+        func9('간절히', '가고싶다.', function(data1, data2) {
+            console.log(data1, data2);
+        })
+        /*  func = function(data1, data2) {
+                ...
+            } 콜백에 익명함수를 변수에 저장하는 과정이 포함되어 있다.
+        */
+    </script>
 </body>
 </html>
