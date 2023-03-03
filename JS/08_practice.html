@@ -9,6 +9,7 @@
 <body>
     
     <script>
+        // 1. 선언적 함수
         func1();
         function func1() {
             console.log('Good Good');
@@ -16,6 +17,7 @@
     </script>
 
     <script>
+        // 2. 익명 함수
         var func2 = function(){
             console.log('Good2Good');
         }
@@ -28,7 +30,114 @@
     </script>
 
 
+    <script>
+        // 3. 자기 호출 함수
+        (function(){
+            console.log('Hello World');
+        })();
+        
+        (() => {
+            console.log('Hello World');
+        })();
+
+        var arr = [function(){
+            console.log('Hello World');
+        }];
+        console.log(arr[0]);
+        (arr[0])();
+
+    </script>
 
 
+    <script>
+        // 4. 인수와 매개변수
+
+        // 함수 정의 : 매개변수 선언할 때 키워드 x, 매개변수는 변수명만 작성.
+        function func4(data){
+            console.log(data);
+        }
+        // 변수 선언
+        var name = '상철';
+        var age = 30;
+        // 함수 호출
+        func4(name);
+        func4(age);
+
+        // 3) 함수 정의 (디폴트 매개변수)
+        function func5(data){
+            // if(!data) {
+            //     data = '없음';
+            // }
+            if(data == undefined) {
+                data = '없음';
+            }
+            console.log(data);
+        }
+        // 인수와 매개변수의 개수가 서로 다른 경우
+        func5();           // undefined -> 없음 나옴
+        func5(name, age);  // 상철 만 나옴
+
+
+        // 4) 함수 정의(전개 연산자)
+        function func6(...abcd) {
+            
+            for(let i = 0; i < abcd.length; i++) {
+                console.log(i, abcd[i]);
+            }
+        }
+        // 함수 호출(인수 개수를 다르게 지정)
+        func6();
+        func6('정숙');
+        func6('정숙', '상철');
+        func6('정숙', '상철', '경태');
+
+
+        // 5) 함수 정의 (arguments 객체)
+        function func7() {
+            for(let i = 0; i < arguments.length; i++) {
+                console.log(i, arguments[i]);
+            }
+        }
+        // 함수 호출 (매개변수가 없는 함수에 인수 전달하기)
+        func7('은정');
+        func7('미희', '지연');
+    </script>
+
+    <script>
+        // 5. 반환
+        
+        // 함수 정의
+        function func8(n) {
+            if(n == 0) {
+                return;
+            }
+            return n + 1;
+        }
+        // 함수 호출
+        console.log(func8(10));
+        console.log(func8(0));
+    </script>
+
+    <script>
+        // 6. 콜백 함수
+
+        // 선언적 함수(info)의 콜백
+        function info(data1, data2) {
+            console.log(data1, data2);
+        }
+        function func9(data1, data2, func) {
+            func(data1, data2);
+        }
+        func9('집에', '이미갔다', info);
+
+        // 익명 함수의 콜백
+        function func10(data1, data2, func) {
+            func(data1, data2);
+        }
+        // 함수 호출
+        func10('아직', '못갔다.', function(data1, data2) {
+            console.log(data1, data2);
+        }) 
+    </script>
 </body>
 </html>
