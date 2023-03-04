@@ -56,5 +56,23 @@
         console.log(box5.getAttribute('class'));
     </script>
 
+    <div id="box6" class="box6">Hello World</div>
+    <script>
+        var box6 = document.getElementById('box6')
+        console.log(box6.id);
+        console.log(box6.className);
+
+        box6.id = 'box6-1';
+        box6.className = 'box6-1';
+    </script>
+
+    <div>
+        <input id="inp" type="text" value="Hello World" readonly="readonly">
+    </div>
+    <script>
+        var inp = document.getElementById('inp');
+        inp.readOnly = false;
+    </script>
+
 </body>
 </html>
