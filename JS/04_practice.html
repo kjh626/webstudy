@@ -43,5 +43,18 @@
         box4.style['color'] = '#030303';
         box4.style['font-size'] = '30px';
     </script>
+
+    <div id="box5" class="box5">Hello World</div>
+    <script>
+        var box5 = document.getElementById('box5');
+        console.log(box5.getAttribute('id'));
+        console.log(box5.getAttribute('class'));
+
+        box5.setAttribute('id', 'box5-1');
+        box5.setAttribute('class', 'box5-1');
+        console.log(box5.getAttribute('id'));
+        console.log(box5.getAttribute('class'));
+    </script>
+
 </body>
 </html>
