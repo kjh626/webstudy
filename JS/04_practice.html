@@ -74,5 +74,25 @@
         inp.readOnly = false;
     </script>
 
+    <style>
+        .red_text {
+            color: red;
+        }
+        .blue_text {
+            color: blue;
+        }
+    </style>
+    <div id="box7" class="red_text">Hello World</div>
+    <script>
+        // 파란색으로 바꿔보기
+        var box7 = document.getElementById('box7')
+        
+        // 1. 스타일 프로퍼티 부르기
+        // box7.style.color = 'blue';
+        // box7.style['color'] = 'blue';
+        // 2. 클래스 바꾸기
+        box7.setAttribute('class', 'blue_text'); // 이 방법을 많이 쓴다. 클래스를 미리 만들어 놓고 쓰는 방법 (예시) 성공할 때 초록, 실패했을 때 빨강)
+        // box7.className = 'blue_text';
+    </script>
 </body>
 </html>
