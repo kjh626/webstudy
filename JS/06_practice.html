@@ -10,12 +10,48 @@
 
     <div id="box1"></div>
     <script>
-        var n = 1;
-        while(n <= 5) {
-            document.getElementById('box1').innerHTML += (n +'&nbsp;');
-            n++;
+        // var n = 1;
+        // while(n <= 5) {
+        //     document.getElementById('box1').innerHTML += (n +'&nbsp;');
+        //     n++;
+        // }
+        for(let n = 1; n <= 5; n++) {
+            document.getElementById('box1').innerHTML += (n + '&nbsp;&nbsp;');
         }
     </script>
     
+    <div id="box2"></div>
+    <script>
+        var str = '<select name="month"><option value="">월</option>';
+        for(let m = 1; m <= 12; m++) {
+            str += '<option value="' + m + '">' + m + '월</option>';
+        }   
+        str += '</select>';
+        document.getElementById('box2').innerHTML = str;
+    </script>
+
+<div id="box3">
+</div>
+<script>
+    var str = '';
+    for(let n = 1; n <= 10; n++) {
+        str += '<img src="../../images/animal' + n + '.jpg" width="100px">';
+    }
+    document.getElementById('box3').innerHTML = str;
+</script>
+
+<div id="box4"></div>
+<script>
+    var str = '<table border=1><tbody>';
+    for(let row = 1; row <= 3; row++) {
+        str += '<tr>';
+        for(let col = 1; col <= 3; col++) {
+            str += '<td>' + ((row - 1) * 3 + col) + '</td>';
+        }
+        str += '</tr>';
+    }
+    str += '</tbody></table>';
+    document.getElementById('box4').innerHTML = str;
+</script>
 </body>
 </html>
