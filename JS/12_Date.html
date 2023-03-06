@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 내장 객체 이름이 Date. 이제부터 자바의 클래스를 배우듯이 내장 객체들에 대해 배울 예정
+
+        // 현재 날짜와 시간 (생성자 함수를 불러주는 것임.)
+        var now = new Date();
+        console.log(now);
+
+        // 특정 날짜와 시간
+        var date1 = new Date(2023, 0, 4);    // 2023-01-04 (월: 0~11)
+        console.log(date1);     
+
+        var date2 = new Date(2023, 0, 4, 12, 0, 0);    // 2023-01-04 12:00:00
+        console.log(date2);
+
+        var date3 = new Date('2023-01-04 12:00:00');   // 2023-01-04 12:00:00(문자열로 전달되는 날짜의 월은 1~12로 사용한다.)
+        console.log(date3);
+
+        // 년월일시분초 추출 (timestamp화 되어있다. 그래서 1/1000초 값까지 구할 수 있다.)
+        // ※ timestamp: 1970-01-01 부터 1/1000초 씩 증가한 값.
+        var now = new Date(); 
+        //                             // 로컬타임기준     UTC타임기준
+        var year = now.getFullYear();  // 2023             getUTCFullYear() 
+        var month = now.getMonth();    // 2 (월: 0~11)     getUTCMonth()
+        var day = now.getDate();       // 6                getUTCDate()
+        var weekNo = now.getDay();     // 1 (0:일, 1:월, ...) 인덱스 같다. getUTCDay()
+        var hour = now.getHours();     // 0~23             getUTCHours()
+        var minute = now.getMinutes(); // 0~59             getUTCMinutes()
+        var second = now.getSeconds(); // 0~59             getUTCSeconds()
+
+        console.log(year, month, day, weekNo, hour, minute, second);
+
+        // 기본. 오늘의 요일(월요일)을 출력해 보자.
+        var weekNames = ['일', '월', '화', '수', '목', '금', '토'];
+        console.log(weekNames[now.getDay()] + '요일');
+
+        /* American에 필요한 속성을 프로토타입에 등록했던 걸 생각해보자
+        function Date(){}; 이 이미 만들어져 있다. 
+        Date.prototype.getDayName이라고 하는 function을 추가해주자. 외부에서 등록해보는 방법만 쓸 수 있다. 이미 만들어져있는 데이터에 추가해주는 것이기 때문에..
+        */
+        // 심화. 요일(일,월,...)을 반환하는 getDayName() 메소드를 정의하자.
+        // Date 객체의 prototype에 getDayName 함수를 등록시킨다.
+        Date.prototype.getDayName = function(){
+            var weekNames = ['일', '월', '화', '수', '목', '금', '토'];
+            return weekNames[this.getDay()];    // this라고 해줘야 한다. (그래야 다른 날짜에 맞춰서 요일을 불러올 수 있다.)
+        }
+
+        console.log(now.getDayName());
+        console.log(date1.getDayName());
+
+    </script>
+
+
+
+    <!-- 시계 만들기 -->
+    <style>
+        .over50second {
+            color: crimson;
+        }
+    </style>
+    <h1 id="counter">
+        <span id="year"></span>년
+        <span id="month"></span>월
+        <span id="day"></span>일
+        <span id="hour"></span>시
+        <span id="minute"></span>분
+        <span id="second"></span>초 입니다.
+    </h1>
+    <script>
+        // 숫자 2자리로 나오게 만들어주기
+        function fnFillZero(n){
+            return n < 10 ? '0' + n : n;
+        }
+
+        // setInterval 함수 + Date 객체
+        setInterval(function(){
+            var now = new Date(); 
+            document.getElementById('year').textContent = now.getFullYear();
+            document.getElementById('month').textContent = fnFillZero(now.getMonth());
+            document.getElementById('day').textContent = fnFillZero(now.getDate());
+            document.getElementById('hour').textContent = fnFillZero(now.getHours()); 
+            document.getElementById('minute').textContent = fnFillZero(now.getMinutes());
+            document.getElementById('second').textContent = fnFillZero(now.getSeconds());
+
+            if(now.getSeconds() >= 50){
+                // 애트리뷰트로 속성을 처리할 거면 class
+                // 프로퍼티로 접근할 거면 className
+                // document.getElementById('counter').className = 'over50second'; // 50초 넘었다. 클래스 이름을 주도록 하겠다
+                document.getElementById('counter').setAttribute('class', 'over50second');
+            } else { // 아니면 다시 클래스이름 지워줘야 한다.
+                //document.getElementById('counter').className = ''; // 없애버리는 걸로 처리
+                document.getElementById('counter').removeAttribute('class');
+            }
+
+        }, 1000);
+        
+
+    </script>
+
+</body>
+</html>
