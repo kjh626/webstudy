@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        /*
+            객체 (object)
+
+            1. 여러 값으로 구성된 하나의 데이터를 의미한다.
+            2. 중괄호 {}를 이용해서 나타낸다.
+            3. 하나의 값이 쌍(pair)으로 구성된다.
+                {
+                    '속성': 값,       // 속성 작성할 때는 다 string값이다. 
+                    속성: 값,         // 따옴표 붙여도 되고 안 붙여도 된다.
+                    property: value   // 변수: 값 이라고 생각해라. value에는 숫자, 문자열, 배열, 객체, 함수 등 다 넣을 수 있다.(제한 없음)
+                }[;]
+        */
+
+        /*
+            객체의 속성(property) 확인하기
+            1. 마침표 : 객체.속성 ( 예시) obj.property )
+            2. 대괄호 : 객체['속성']  반드시 따옴표 안에 적어줘야 한다. 대괄호 꼭 필요한 경우가 있다.
+
+        */
+        // 객체는 만들어서 꺼내쓰기가 핵심.
+        // 객체 생성하기
+        var obj = {     // JSON이라고 봐도 됨. 몽고DB가 이렇게 저장함.(객체 생성문을 몽고DB는 문서라고 부름)
+            'age': 30,
+            'name': '정숙',
+            isAlive: true,  // 따옴표 한번 빼봤음. 생략해도 상관없다.
+            'friend': {   // 값으로 객체가 올 수 있음.
+                'name': '미희',
+                'phone': '010-1111-1111'
+            },
+            'hobbies': [    // 배열
+                '여행',
+                '골프',
+                '음주'
+            ],
+            'info': function(){  // 함수도 가능 익명함수로 만들어 준다. 'info'(프로퍼티)가 변수명이 되어줄 것이니까
+                // 객체의 속성을 호출할 때는 항상 객체.속성 또는 객체['속성']의 형식을 갖춰야 한다. obj 안에서 obj가 사용되는 형태.
+                // this : 현재 객체를 의미한다. 즉 obj를 의미한다.
+                console.log('이름이 뭐예요? ' + obj.name + ', 나이가 뭐예요? ' + obj.age);       // 자바처럼 생각해서 'age','name','isAlive' 등을 필드값으로 생각. 메소드는 필드값을 갖다 쓸 수 있다. 자바스크립트도 되나..? 안된다.. => 객체. or this. 필요
+                console.log('이름이 뭐예요? ' + this.name + ', 나이가 뭐예요? ' + this.age);
+            }
+        };    // 세미콜론 생략 가능
+
+        // 객체의 속성(property) 확인하기
+        console.log(obj.age, obj['age']);
+        console.log(obj.name, obj['name']);
+        console.log(obj.isAlive, obj['isAlive']);
+        console.log(obj.friend.name, obj.friend['name']);
+        console.log(obj['friend'].name, obj['friend']['name']); // 친구의 이름 - 총 4가지 방법으로 가능
+        console.log(obj.friend.phone, obj.friend['phone']);
+        console.log(obj['friend'].phone, obj['friend']['phone']);
+        for(let i = 0; i < obj.hobbies.length; i++){    // 배열
+            console.log(obj.hobbies[i]);
+        }
+        for(let i = 0; i < obj['hobbies'].length; i++){
+            console.log(obj['hobbies'][i]);
+        }
+        (obj.info)();// info는 function이다 괄호 필요.(자기 호출 함수)
+        (obj['info'])();
+
+    </script>
+
+</body>
+</html>
