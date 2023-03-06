@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        var now = new Date();
+        console.log(now);
+
+        var date1 = new Date(2023, 0, 4);
+        console.log(date1);
+
+        var date2 = new Date(2023, 0, 4, 12, 0, 0);
+        console.log(date2);
+
+        var date3 = new Date('2023-01-04 12:00:00');
+        console.log(date3);
+
+
+        var now = new Date();
+
+        var year = now.getFullYear();
+        var month = now.getMonth();
+        var day = now.getDate();
+        var weekNo = now.getDay();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+
+        console.log(year, month + 1, day, weekNo, hour, minute, second);
+
+        // 기본. 오늘의 요일(월요일)을 출력해 보자.
+        var weekNames = ['일', '월', '화', '수', '목', '금', '토'];
+        console.log(weekNames[now.getDay()] + '요일');
+
+        // 심화. 요일(일,월,...)을 반환하는 getDayName() 메소드를 정의하자.
+        // Date 객체의 prototype에 getDayName 함수를 등록시킨다.
+        Date.prototype.getDayName = function(){
+            var weekNames = ['일', '월', '화', '수', '목', '금', '토'];
+            return weekNames[this.getDay()];
+        }
+        console.log(now.getDayName());
+        console.log(date1.getDayName());
+    </script>
+
+    <!-- 시계 만들기 -->
+    <style>
+        .over40second {
+            color: blue;
+        }
+    </style>
+    <h1 id="counter">
+        <span id="year"></span>년
+        <span id="month"></span>월
+        <span id="day"></span>일
+        <span id="hour"></span>시
+        <span id="minute"></span>분
+        <span id="second"></span>초 입니다.
+    </h1>
+    <script>
+
+        function fnFillZero(n){
+            return n < 10 ? '0' + n : n;
+        }
+
+        setInterval(function(){
+            var now = new Date();
+            document.getElementById('year').textContent = now.getFullYear();
+            document.getElementById('month').textContent = fnFillZero(now.getMonth());
+            document.getElementById('day').textContent = fnFillZero(now.getDate());
+            document.getElementById('hour').textContent = fnFillZero(now.getHours());
+            document.getElementById('minute').textContent = fnFillZero(now.getMinutes());
+            document.getElementById('second').textContent = fnFillZero(now.getSeconds());
+
+            if(now.getSeconds() >= 40){
+                document.getElementById('counter').className = 'over40second';
+                // document.getElementById('counter').setAttribute('class', 'over40second');
+            } else {
+                document.getElementById('counter').className = '';
+                // document.getElementById('counter').removeAttribute('class');
+            }
+
+        }, 1000);
+
+    </script>
+</body>
+</html>
