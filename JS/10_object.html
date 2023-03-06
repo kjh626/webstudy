@@ -71,5 +71,106 @@
 
     </script>
 
+    <script>
+
+        // 객체의 속성(property)은 동적으로 추가가 가능하다.
+
+        // 빈 객체
+        var computer = { };
+
+        // 속성 추가(기존에 없던 속성을 사용하면 자동으로 추가된다.)
+        computer.model = 'gram';
+        computer.price = 150;
+        console.log(computer);
+
+        // 속성 삭제(delete 키워드를 사용한다.)
+        delete computer.price;
+        console.log(computer);
+
+    </script>
+
+    <script>
+
+        // 객체의 속성(property)을 for - in문으로 순회할 수 있다.
+        
+        // 객체 생성
+        var book = {
+            'title': '어린왕자',
+            'author': '생텍쥐베리',
+            'price': 10000
+        };
+
+        // 객체 속성의 순회
+        for(let p in book){    // 지역 변수 p로 'title', 'author', 'price' 속성이 문자열로 하나씩 전달된다.
+            // console.log(p, typeof p);
+            console.log(p + ': ' + book.p);  // for-in문에서는 마침표를 이용한 속성 참조가 불가능하다.(book.'title', book.'author', book.'price'라고 호출해서 안 되는 것임.(문자열로 전달되기에..))
+            console.log(p + ': ' + book[p]); // for-in문에서는 대괄호를 이용한 속성 참조만 가능하다.(book['title'], book['author'], book['price'])
+            // 대괄호를 쓰는 것만 가능한 경우 가 이 때임.
+        }
+
+    </script>
+
+    <div id="box1"></div>
+    <script>
+        /*
+            목록 만들기
+            1. code = A100
+            2. name = 홈런볼
+            3. price = 2000
+        */
+       var snack = {
+            'code': 'A100',
+            'name': '홈런볼',
+            'price': 2000
+       }
+       
+       var str = '<ol>'
+       for(let p in snack){
+            str += '<li>' + p + ' = ' + snack[p] + '</li>';
+       }
+       str += '</ol>';
+       document.getElementById('box1').innerHTML = str;
+    </script>
+
+    <div id="box2"></div>
+    <script>
+        /*
+            테이블 만들기  -> 이중 for문으로 만들어주면 될 듯?
+            성명    연락처           이메일
+            정숙    010-1111-1111    jungsook@naver.com
+            미희    010-2222-2222    mihee@gamil.com
+            정희    010-3333-3333    junghee@kakao.com
+        */
+       var contacts = [
+            {
+                'name': '정숙',
+                'phone': '010-1111-1111',
+                'email': 'jungsook@naver.com'
+            },
+            {
+                'name': '미희',
+                'phone': '010-2222-2222',
+                'email': 'mihee@gamil.com'
+            },
+            {
+                'name': '정희',
+                'phone': '010-3333-3333',
+                'email': 'junghee@kakao.com'
+            }
+       ];
+       var str = '<table border="1"><thead><tr><td>성명</td><td>연락처</td><td>이메일</td></tr><thead>';
+       str += '<tbody>';
+       for(let i = 0; i < contacts.length; i++) {   // 배열 요소 순회
+            str += '<tr>';
+            for(let p in contacts[i]) { // 객체 속성 순회. / 객체다. 그러면 for-in문으로 순회할 수 있다.
+                str += '<td>' + contacts[i][p] + '</td>';
+            }
+            str += '</tr>';
+        }
+       str += '</tbody>';
+       str += '</table>';
+       document.getElementById('box2').innerHTML = str;
+    </script>
+
 </body>
 </html>
