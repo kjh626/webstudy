@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="timer1"></h1>
+    <script>
+        
+
+        // 5초 타이머 구현하기(5 → 4 → 3 → 2 → 1 → 땡)
+        var countDown = 5;
+        var timer1 = document.getElementById('timer1');
+        var timerId = setInterval(function(){
+            if(countDown == 0) {
+                timer1.textContent = '땡';
+                clearInterval(timerId);
+            } else {
+                timer1.textContent = countDown--;
+            }
+        }, 1000);
+        
+    </script>
+</body>
+</html>
