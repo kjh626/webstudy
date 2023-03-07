@@ -116,7 +116,14 @@
         // 모두 체크되었으면 전체 동의를 체크하고, 아니면 전체 동의를 해제한다.
         for(let i = 0; i < chkOneList.length; i++){
             chkOneList[i].onclick = function(){
-                
+                console.log(chkOneList[0].checked);
+                console.log(chkOneList[1].checked);
+                console.log(chkOneList[2].checked);
+                if(chkOneList[0].checked === true && chkOneList[1].checked ===true && chkOneList[2].checked ===true){
+                    chkAll.checked = true;
+                } else {
+                    chkAll.checked = false;
+                }
             }
         }
         
