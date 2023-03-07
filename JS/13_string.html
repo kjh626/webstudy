@@ -44,6 +44,11 @@
         console.log(str.trimStart(), str.trimLeft());
         console.log(str.trimEnd(), str.trimRight());    // trimStart(trimEnd)와 trimLeft(trimRight)는 다를 바 없음. 
         console.log(str.trim());  // 앞 뒤 제거
+        // ※ replace 사용
+        console.log(str.replace(' ', '')); // 맨 앞 공백 1개만 제거
+        console.log(str.replace(/ /g, '')); // 정규식에서 / /사이의 값을 replace의 두번째 인자값으로 교체가 가능하며, 뒤에붙는 g는 문자열의 모든 / / 사이의 값을 바꿔줍니다. 모든 공백 제거 1
+        console.log(str.replace(/(\s*)/g,'')); // 모든 공백 제거 2
+
 
         // 8. 하나만 치환 (찾아 바꾸기). Java에서는 replace쓰면 모두 바꿔준다.(Java에는 replaceAll 메소드도 있음.)
         var str = 'JavaJavaJavaJavaJava';
