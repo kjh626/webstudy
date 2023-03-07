@@ -180,6 +180,7 @@
 
         // 고전 이벤트 등록
         link.onclick = function(event){  // 그냥 이름 줘서 주면된다.
+            
             // alert('이벤트 타입 : ' + event.type); // 이벤트 객체 : event 에서 내부에서 알아서 만들어 짐.
             
             // alert('이벤트 대상 : ' + event.target);
@@ -187,6 +188,7 @@
             
             // alert(event.target.textContent); // a링크 전체가 event.target으로 등록되되어 있음
             // alert(this.textContent);
+            
             event.preventDefault();  // 기본 동작을 방지하겠다.(방지하겠다.) -> a링크의 기본동작은 링크주소로 이동이다. 그걸 막겠다는 것이다.
             // 이렇게 막는 걸 자주 쓰게될 것이다.
         }
