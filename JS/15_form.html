@@ -13,21 +13,67 @@
     <!-- 1. <button>을 이용한 submit -->
         <!-- submit의 기본 단위는 form이다. form이 없으면 submit을 못함 -->
     <div>
-        <form action="https://search.daum.net/search" method="get"> <!--action: 데이터를 보낼 서버의 경로. ? 앞에 까지가 서버의 주소다 -->
-            <input type="text" name="q"> <!-- ★★name 속성이 없으면 submit에서 인식이 안 된다.-->
+        <form id="frm_daum" action="https://search.daum.net/search" method="get"> <!--action: 데이터를 보낼 서버의 경로. ? 앞에 까지가 서버의 주소다 -->
+            <input id="q" type="text" name="q"> <!-- ★★name 속성이 없으면 submit에서 인식이 안 된다.-->
             <button type="submit">다음검색</button> <!-- button의 기본 type은 submit이다.(button의 type은 생략가능) -->
         </form>
     </div>
+    <!-- id는 스크립트에서 불러 쓰는 이름, name은 서버쪽에서 인식하기 위해 쓰는 이름. 일반적으로 같게 준다. -->
+    <script>
+        // ★ submit을 수행하는 것은(이벤트 대상은) <form> 이다. <button> 아니다!!!!!!!!!!
+        // 이벤트 타입 : submit
+        // 이벤트 대상 : <form></form>
+
+        // submit 이벤트 등록
+        /*
+            1. 고전 이벤트 : 문서객체.onsubmit = function(){};
+            2. 표준 이벤트 : 문서객체.addEventListener('submit', function(){});
+        */
+       // 이벤트 대상 은 form
+       var frmDaum = document.getElementById('frm_daum'); 
+       
+       // 검색어 입력란 : <input id="q">
+       var q = document.getElementById('q');
+       // 입력란에 입력한 것은 뭐라 할까? value다. 입력한 것을 value속성을 통해 파악할 수 있다.
+
+       // 이벤트 등록 (고전 이벤트)
+       frmDaum.onsubmit = function(event){
+            // alert('다음 검색입니다.'); // 이벤트 등록 잘 됐나 확인하기 위한 코드
+            if(q.value == ''){
+                alert('검색어가 입력되지 않았습니다.');
+                q.focus();                 // 검색어 입력란에 자동으로 커서를 보냄
+                event.preventDefault();    // submit 방지
+                return;                    // 이벤트 종료(이벤트 리스너의 종료) return하고 event.preventDefault() 는 같이 다닌다고 생각.
+            }
+
+       }
+        
+    </script>
     
-    <script>document.getElementsByName</script>
     <!-- 2. <input type="submit">을 이용한 submit -->
     <div>
         <!-- 구글의 검색창 name="q", 검색창을 포함한 <form>의 action: /search 라고만 적혀있다.(본주소 생략..?)-->
-        <form action="https://www.google.co.kr/search" method="get">
-            <input type="text" name="q">
+        <form id="frm_google" action="https://www.google.co.kr/search" method="get">
+            <input id="gq" type="text" name="q">
             <input type="submit" value="구글검색">    <!-- input의 type은 생략하면 안 된다. 생략하면 text로 동작 -->
         </form>
     </div>
+    <script>
+        // 이벤트 대상
+        var frmGoogle = document.getElementById('frm_google');
+        
+        // 검색어 입력란
+        var gq = document.getElementById('gq');
+        
+        // 이벤트 등록 (표준 이벤트)
+        frmGoogle.addEventListener('submit', function(event){
+            if(gq.value == ''){
+                event.preventDefault();  // submit 방지
+                return;                  // 함수를 종료시킴
+            }
+        })
+        // 로그인할 때 써먹으면 좋고, 아이디랑 비밀번호 없을 때 submit 못하도록 막아주는 것도 괜찮.
+    </script>
 
     <!-- 연습 : 네이버 검색 -->
     <div>
@@ -36,6 +82,12 @@
             <button>네이버검색</button>
         </form>
     </div>
+
     <!-- 구글처럼 검색어 없으면 조회하지 않음(우리가 원하는). 다음은 빈 텍스트를 검색함. -->
+
+    <!-- 3. <input type="button">을 이용한 submit -->
+    <!-- 기본적으로 버튼은 하는 일이 없음. 도화지로 따지면 하얀 도화지. 전부 우리가 그려줘야 한다.
+         할 일을 자바스크립트로 다 만들어줄 때 버튼을 쓴다. 우리도 자주 쓰게될 거야.. -->
+
 </body>
 </html>
