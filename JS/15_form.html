@@ -165,19 +165,7 @@
         // 모두 체크되었으면 전체 동의를 체크하고, 아니면 전체 동의를 해제한다.
         for(let i = 0; i < chkOneList.length; i++){  // 이렇게 하면 onclick 이벤트가 3개 짜진 것이다.
             chkOneList[i].onclick = function(){
-                for(let j = 0; j < chkOneList.length; j++) {
-                    if(chkOneList[i].checked == chkOneList[j].checked) {
-                        for(let k = 0; k < chkOneList.length; k++) {
-                            if(chkOneList[i].checked == chkOneList[j].checked == chkOneList[k].checked){
-                                return chkAll.checked = chkOneList[k].checked;
-                            } else {
-                                return;
-                            }
-                        }
-                    } else {
-                        return;
-                    }
-                }
+                
             }
 
         }
