@@ -200,7 +200,7 @@
         });
     </script>
 
-    <!-- 연습. sfc_web_map.xml 읽어서 화면에 표시하기 -->
+    <!-- 연습1. sfc_web_map.xml 읽어서 화면에 표시하기 -->
     <div>
         <input type="button" id="btn_get_weather" value="날씨가져오기">
         <table border="1">
@@ -239,6 +239,21 @@
             });
         });
     </script>
+
+    <!-- 연습2. book.json 읽어서 화면에 표시하기 -->
+    <div>
+        <input type="button" id="btn_get_book" value="책정보가져오기">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>제목</td>
+                    <td>저자</td>
+                    <td>가격</td>
+                </tr>
+            </thead>
+            <tbody id="book_body"></tbody>
+        </table>
+    </div>
 
 </body>
 </html>
