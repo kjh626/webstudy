@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        /*          sender(client) 요청 →
+                                        ← 응답 receiver(server) 
+            비동기 처리 방식 (그림을 보고 이해하는 게 빠름. 비동기: 선 여러 개, 동기: 선 하나로 계속 이어지는 느낌)
+            1. 데이터를 주고 받는 통신(송신, 수신) 과정이 순서 없이 처리되는 방식이다.
+            2. 응답이 없어도 계속 요청할 수 있는 방식이다.
+            3. 페이지를 구성하는 일부 데이터만 요청하고 응답 받을 수 있다.
+            4. 이 때 JavaScript의 XMLHttpRequest 객체가 사용된다.(내장 객체의 이름. 대소문자 지킬것)
+            ※ 코드 외우려고 노력하지 말고 개념 정도만 알고 있기!
+        */
+       // 수업에서는 요청,응답 서버가 없어서 파일로 대체함. (text, xml, json 파일을 활용해 요청해볼 것임)
+       /* 페이지 변화없이 댓글 0개 에서 1개로만 바뀜. 페이지는 그대로..
+           작성완료를 눌러 요청(db에 데이터를 저장해달라)하고 댓글 개수와 댓글 내용 2개만 응답받음(서버로부터).
+           요때 필요한 기능(일부 데이터만 요청하고 응답받을 수 있다.)이다. */
+    </script>
+
+    <div>
+        <input type="button" id="btn_req_text" value="텍스트요청"> <!-- data.txt를 달라~~ -->
+        <div id="res_text"></div> <!-- 응답텍스트 여기에 입력해볼 것임 (목표:여기에 Hello World가 찍히는 것)-->
+    </div>
+    <script>
+
+        document.getElementById('btn_req_text').addEventListener('click', () => {
+
+            /* 1. XMLHttpRequest 객체 생성. 굉장히 중요한 기술임. */
+            var xhr = new XMLHttpRequest();
+    
+            /*
+                2. open - 요청 정보 생성
+                    1) 형식 : open(HTTP Method, URL, Sync/Async)
+                    2) HTTP Method
+                        (1) GET
+                        (2) POST
+                    3) URL : 요청하는 서버 경로  (수업에서는 같은 경로에 있는 data.txt)
+                    4) Sync/Async
+                        (1) Sync(동기)    : false
+                        (2) Async(비동기) : true
+            */
+           xhr.open('get', 'data.txt', true);
+    
+           /* 3. send - 요청하기 */
+           xhr.send();
+    
+           /* 
+                4. 응답 처리하기 - 비동기처리방식은 각각의 응답이 언제 올 지를 모른다.
+                    1) 응답되었는지 확인하기 위한 readystatechange 이벤트가 사용된다.
+                    2) 응답 속성
+                        (1) readyState - 통신 상태 확인
+                            ① 0 : OPENED
+                            ② 1 : UNSEND
+                            ③ 2 : HEADERS_RECIVE
+                            ④ 3 : LOADING
+                            ⑤ 4 : DONE (이것만 사용하면 된다.)
+                        (2) status - 응답 코드
+                            ① 200 : 응답 성공 (이것만 사용하면 된다.)
+                            ② 4XX : 요청 실패
+                            ③ 5XX : 응답 실패
+                        (3) 응답 데이터의 형식
+                            ① 텍스트 : respnoseText
+                            ② XML    : responseXML
+                            ③ JSON   : JSON.parse(reponseText)
+            */
+    
+            // readyStatechage 이벤트 등록 - 버튼을 클릭 하면 한다.
+            xhr.addEventListener('readystatechange', () => {
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    document.getElementById('res_text').textContent = xhr.responseText; // 응답 받은 텍스트를 div태그의 내용으로 하겠다.
+                }
+            })
+        });
+
+    </script>
+
+</body>
+</html>
