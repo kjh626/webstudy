@@ -164,7 +164,18 @@
         // 개별 동의를 클릭하면 -> 모든 개별 동의의 체크 유무를 확인해서
         // 모두 체크되었으면 전체 동의를 체크하고, 아니면 전체 동의를 해제한다.
         for(let i = 0; i < chkOneList.length; i++){  // 이렇게 하면 onclick 이벤트가 3개 짜진 것이다.
-            chkOneList[i].onclick = function(){
+            chkOneList[i].onclick = function(){     //chkOneList[i] 를 클릭했을 때 어떤 일을 하냐..?
+                // 첫 번째를 클릭하더라도 전부 체크됐는지 안 됐는지 확인해야 하고
+                // 두 번째를 클릭하더라도 전부 체크됐는지 안 됐는지 확인해야 하고
+                // 세 번째를 클릭하더라도 전부 체크됐는지 안 됐는지 확인해야 하고 -> 누구를 클릭하든 전부를 확인해야 한다.
+                // 우리가 해야할 것은 무엇을 클릭하든 전부 확인해야 한다. -> 우리는 다시 순회를 돌아야 한다.
+                let chkCount = 0;
+                for(let j = 0; j < chkOneList.length; j++) {
+                    chkCount += chkOneList[j].checked; // true값은 숫자 1, false값은 숫자 0 -> 누적시켜서 합계를 구할 것임
+                    // 모두 true이면 합계(chkCount)가 3이 된다. 3은 chkOneList.length의 길이(3)과 똑같다.
+                    chkAll.checked = (chkOneList.length == chkCount);  // 의 동등 비교 값(3 == 3)과 같다. 3과 3이 같을 때만 true가 된다.
+                    // 그 외 모든 경우 chkCount = 0,1,2 의 경우 false가 된다.
+                }
                 
             }
 
