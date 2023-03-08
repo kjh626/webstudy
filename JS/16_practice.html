@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>
+        <h1>이메일 검사</h1>
+        <input type="text" id="email">
+        <span id="msg_email"></span>
+    </div>
+
+    <script>
+       var email = document.getElementById('email');
+       var msgEmail = document.getElementById('msg_email');
+
+       email.addEventListener('blur', () => {
+
+        var regEmail = /^[0-9a-z_-]+@[0-9A-Za-z]{2,}(\.[A-Za-z]{2,6}){1,2}$/;
+
+        if(regEmail.test(email.value)){
+            msgEmail.textContent = '올바른 이메일';
+            msgEmail.style.color = 'green';
+        } else {
+            msgEmail.textContent = '틀린 이메일';
+            msgEmail.style.color = 'red';
+        }
+       })
+    </script>
+</body>
+</html>

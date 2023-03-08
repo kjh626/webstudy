@@ -73,6 +73,7 @@
         // 이벤트 타입    : click
         // 이벤트 대상    : <input type="button" value="검사" id="btn_phone">
         // 이벤트 리스너  : function(){ } 또는 () => { }
+        // 나중에~ 검사 통과 못했다 -> 서브밋을 방지해주면 된다.
 
         // 핸드폰 입력란
         var phone = document.getElementById('phone');
@@ -126,7 +127,7 @@
     </script>
 
     <div>
-        <h1>비민번호 검사하기</h1>
+        <h1>비밀번호 검사하기</h1>
         <input type="password" id="pw">
         <span id="msg_pw"></span>
     </div>
@@ -165,8 +166,38 @@
                 msgPw.textContent = '대문자, 소문자, 숫자, 특수문자(!@#$%^&*)를 모두 조합한 5 ~ 20자의 비밀번호를 만드세요.'
             }
         })
-        
+    </script>
 
+    <div>
+        <h1>이메일 검사하기</h1>
+        <input type="text" id="email">
+        <span id="msg_email"></span>
+    </div>
+    <script>
+
+        // 이메일 입력란
+        var email = document.getElementById('email');
+
+        // 이메일 메시지
+        var msgEmail = document.getElementById('msg_email');
+
+        // 이메일 입력이 끝나면(포커스를 잃을 때 : blur) 정규식 검사
+        email.addEventListener('blur', () => {
+
+            // id규칙수정: 글자수 제한 없앤다-> 1글자 이상이다.(a+ 쓸거임), 첫 글자 숫자 못 온다 없앰
+            // @앞 부분, @, @뒷 부분(1글자짜리 도메인 못 만듦, 2글자 이상 가능 a{2,}),
+            /* (.com|.co.kr)이 도메인들은 2~6글자까지 가능하다. 도메인은 영문으로 되어있고 숫자포함 불가. 
+                마침표+영문, 마침표+영문+마침표+영문 이렇게 2가지 가능. (){1,2}: 괄호 안 내용이 1개 아니면 2개(마침표+영문이 1번 아니면 2번 나온다.)
+                마침표는 [.], \. 이 2가지 방법으로 작성가능.  =>  마침표+영문이 1개아니면 2개 나올수 있는데 영문은 2~6글자 가능하다.           */
+            // 이메일의 정규식 (우리가 만들었던 id기준으로<- 이메일의 시작부분은 id임.)
+            var regEmail = /^[0-9a-z_-]+@[0-9A-Za-z]{2,}(\.[A-za-z]{2,6}){1,2}$/;
+
+            if(regEmail.test(email.value)){
+                msgEmail.textContent = '이메일 형식이 올바릅니다.';
+            } else {
+                msgEmail.textContent = '이메일 형식이 잘못되었습니다.';
+            }
+        })
 
     </script>
 
