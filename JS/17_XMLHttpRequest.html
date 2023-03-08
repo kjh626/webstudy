@@ -189,7 +189,7 @@
                     var str = '';
                     for(let i = 0; i < data.length; i++){
                         str += '<div class="product">';    // 여기다가 id를 주면 똑같은 id로 중복되기 때문에 안 된다. => 차라리 '<div id="product' + i + '">' 이런 방법을 써라.
-                        str += '<span>' + data[i].model + '</span>';
+                        str += '<span>' + data[i].model + '</span>';    // data는 배열임
                         str += '<span>' + data[i]['maker'] + '</span>';
                         str += '<span>' + data[i].price + '</span>';
                         str += '</div>';
@@ -199,5 +199,46 @@
             });
         });
     </script>
+
+    <!-- 연습. sfc_web_map.xml 읽어서 화면에 표시하기 -->
+    <div>
+        <input type="button" id="btn_get_weather" value="날씨가져오기">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>지역명</td>
+                    <td>날씨</td>
+                    <td>온도</td>
+                </tr>
+            </thead>
+            <tbody id="weather_body"></tbody>
+        </table>
+    </div>
+    <script>
+        document.getElementById('btn_get_weather').addEventListener('click', ()=>{
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', 'sfc_web_map.xml', true)
+            xhr.send()
+            xhr.addEventListener('readystatechange', ()=>{
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    var data = xhr.responseXML;
+                    var localList = data.getElementsByTagName('local');
+                    console.log(localList);
+                    var str = '';
+                    // var str = '<table border="1"><tr><td>지역명</td><td>날씨</td><td>온도</td></tr></thead>';
+                    //     str += '<tbody>';
+                    for(let i = 0; i < localList.length; i++){
+                        str += '<tr>';
+                        str += '<td>' + localList[i].textContent + '</td>';
+                        str += '<td>' + localList[i].getAttribute('desc') + '</td>';
+                        str += '<td>' + localList[i].getAttribute('ta') + '</td>';
+                        str += '</tr>';
+                    }
+                    document.getElementById('weather_body').innerHTML = str;
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
