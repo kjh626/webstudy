@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // screen 객체
+        console.log('화면 너비', screen.width);
+        console.log('화면 높이', screen.height);
+        console.log('실제 너비', screen.availWidth);
+        console.log('실제 높이', screen.availHeight);
+    </script>
+
+    <div>
+        <!-- history 객체 -->
+        <input type="button" onclick="history.back()" value="뒤로">
+        <input type="button" onclick="history.forward()" value="앞으로">
+        <input type="button" onclick="history.go(-1)" value="뒤로1번">
+        <input type="button" onclick="history.go(-2)" value="뒤로2번">
+    </div>
+
+    <div>
+        <!-- location 객체 -->
+        <input type="button" onclick="location.href='https://www.naver.com'" value="네이버이버">
+        <input type="button" onclick="location.href='https://www.google.co.kr'" value="구글러유">
+    </div>
+
+    <div>
+        <input type="button" id="btn_open" value="창열기">
+    </div>
+    <script>
+        // window.open(url, target, feature)
+        document.getElementById('btn_open').addEventListener('click', ()=>{
+            var width = 480;
+            var height = 360;
+            var left = (screen.width - width) / 2;;
+            var top = (screen.height - height) / 2;;
+            var feature = 'width=' + width + ',height=' + height  + ',left=' + left + ',top=' + top
+            window.open('18_popup_prac.html', '', feature);
+        })
+    </script>
+</body>
+</html>
