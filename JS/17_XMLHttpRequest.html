@@ -199,6 +199,10 @@
             });
         });
     </script>
+    <!-- 특정 서버에 데이터 요청하고 응답받아올 수 있는 객체 XMLHttpRequest. 이 객체는 비동기 처리방식으로 동작한다.
+         이 객체의 특징은
+         웹페이지가 존재할 때 refresh(새로고침)없이 데이터를 응답받아서 페이지의 일부에 채워넣을 수 있는 게 핵심이다.
+         JQuery에서는 Ajax기술이라고 부를것. -->
 
     <!-- 연습1. sfc_web_map.xml 읽어서 화면에 표시하기 -->
     <div>
@@ -217,16 +221,15 @@
     <script>
         document.getElementById('btn_get_weather').addEventListener('click', ()=>{
             var xhr = new XMLHttpRequest();
-            xhr.open('get', 'sfc_web_map.xml', true)
-            xhr.send()
+            xhr.open('get', 'sfc_web_map.xml', true);
+            xhr.send();
             xhr.addEventListener('readystatechange', ()=>{
                 if(xhr.readyState == 4 && xhr.status == 200){
                     var data = xhr.responseXML;
                     var localList = data.getElementsByTagName('local');
                     console.log(localList);
                     var str = '';
-                    // var str = '<table border="1"><tr><td>지역명</td><td>날씨</td><td>온도</td></tr></thead>';
-                    //     str += '<tbody>';
+                    
                     for(let i = 0; i < localList.length; i++){
                         str += '<tr>';
                         str += '<td>' + localList[i].textContent + '</td>';
@@ -254,6 +257,33 @@
             <tbody id="book_body"></tbody>
         </table>
     </div>
-
+    <script>
+        document.getElementById('btn_get_book').addEventListener('click', ()=>{
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', 'book.json', true);
+            xhr.send();
+            xhr.addEventListener('readystatechange', ()=>{
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    var bookList = data.books;
+                    var str = '';
+                    for(let i = 0; i < bookList.length; i++){
+                        str += '<tr>';
+                        str += '<td>' + bookList[i].title + '</td>'
+                        str += '<td>' + bookList[i].author + '</td>'
+                        str += '<td>' + bookList[i].price + '</td>'
+                        /* 
+                            이 <td> 부분 3개를 for문으로 돌릴 수 있다. 객체의 프로퍼티를 순회할 수 있다.
+                            for(let p in bookList[i]){
+                                str += '<td>' + bookList[i][p] + '</td>';
+                            }
+                        */
+                        str += '</tr>';
+                    }
+                    document.getElementById('book_body').innerHTML = str;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
