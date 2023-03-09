@@ -53,9 +53,10 @@
     </div>
     <script>
         /*
-            window.open(url, name, feature)주소, 이름, 특징
+            window.open(url, target, feature)주소, 이름, 특징
             1. url  : 열어 줄 창(파일)의 경로
-            2. name : 열어 줄 창의 이름 (생략 가능)
+            2. target : 열어 줄 창의 이름 (생략 가능) 
+                ※ target을 맞춰주면 a링크를 클릭하면 창이 열리게끔 할 수 있다.  <a target="child">       open('xxx', 'child', 'xxx') => 
             3. feature
                 1) width, height            : 열어 줄 창의 크기
                 2) top, bottom, left, right : 열어 줄 창의 위치
@@ -69,7 +70,7 @@
             var top = (screen.height - height) / 2;
             // left값은 screen.width/2-width/2 -> (screen.width-width)/2
             var feature = 'width=' + width + ', height=' + height + ', left=' + left + ',top=' + top;
-            window.open('18_popup.html', '', feature);
+            window.open('18_popup.html', '', feature);  // window 생략가능
             // 이때 창열기버튼이 있는 창이 부모창(parent), 18_팝업 창이 자식창(child).. 자식창은 부모창을 opener라고 부르기도 한다.
         });
     </script>

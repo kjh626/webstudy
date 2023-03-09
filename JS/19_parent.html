@@ -8,15 +8,50 @@
 </head>
 <body>
     <!-- 프로젝트할 때 자바 스크립트를 js라는 별도의 파일로 만들어서 이용할 것. CSS랑 비슷하게 생각 CSS라는 파일에 별도로 저장해서 쓰듯이
-        js라는 파일을 헤드쪽에 포함시켜줘서 사용하게 될 것이다. -->
+        js라는 파일을 헤드쪽에 포함시켜줘서 사용하게 될 것이다. <head> 위치 맨 위니까 load꼭 써줘야겠지? -->
     <script>
         
         // 고전 이벤트 ★ load이벤트는 거의 고전 이벤트로 적는다.(표준 이벤트로 적은 걸 볼 수 없다.)// window객체는 생략이 가능.
         // ★load 이벤트 : 문서 내의 모든 구성요소를 인식할 수 있다. (script의 위치(순서) 상관없게 해준다.)
         onload = ()=>{  
-            document.getElementById('btn_send').addEventListener('click', ()=> {
-            });
+            // <input type="text" id="msg">에 입력한 메시지를 19_child.html 창으로 전송한다.
             
+            // 문서 객체
+            var btnSend = document.getElementById('btn_send');
+            var msg = document.getElementById('msg');
+            
+            // 창 객체(19_child.html) - 모든 함수에서 사용할 수 있도록 전역 변수로 선언
+            var child = null;  // 아직은 없음. 왜냐 아직 open을 안 했으니까
+
+            // 창 여는 함수
+            function fnOpenChild(url, target){
+                // 화면 중앙에 창 열기
+                const width = 480;    // const는 상수
+                const height = 320;
+                const left = (screen.width - width) / 2;
+                const top = (screen.height - height) / 2;
+                const feature = 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top;
+                // 창이 열려 있다면 열지 않기
+                if(child == null || child.closed){  // null: 열린적 없음. closed: 한 번 열렸다 닫힌 것을 기억함.
+                    child = window.open(url, target, feature);   // 현재 열려있는 현재 창이 window라고 부른다. 자식 창의 이름을 child(변수이름)라고 줬다. 자식 창의 구성요소는 child.document.getElementById... 이렇게 찾아 쓸 수 있다.
+                }
+                
+            }
+
+            // 창에 데이터 보내는 함수
+            function fnSendToChild(){
+                // child의 모든 구성요소를 인식할 수 있다.
+                child.onload = ()=>{  // child는 생략 불가.
+                    child.document.getElementById('receive_msg').textContent = msg.value;   // 입력한 메시지를 child창에 텍스트로 보내줌
+                }
+            }
+
+            // 클릭 이벤트
+            btnSend.addEventListener('click', ()=> {
+                fnOpenChild('19_child.html','');
+                fnSendToChild();
+            });
+            // 예시) 아이디 중복체크 버튼 클릭하면 중복체크를 해주는 새창에서 가능,불가 알려주고 거기서 아디 다시입력할 수 있게 해줬음. parent, child(새창)으로 구성. 예전에 이런 방식으로 아이디 중복체크 했었음.
         }
 
     </script>
@@ -24,9 +59,15 @@
             어디서도 동작할 수 있다(꼭 div 다음에 script를 써줄 필요가 없어짐). <script>의 위치가 어디든 상관없다. 상당히 많이 쓰이는 이벤트이다.
             이걸 호출하려면 window객체가 필요하다.-->
     <div>
-        <label for="mag">보낼 메시지</label>
+        <label for="msg">보낼 메시지</label>
         <input type="text" id="msg">
         <input type="button" id="btn_send" value="메시지전송">
     </div>
+
+    <div>
+        <div>받은 메시지</div>
+        <div id="receive_msg"></div>
+    </div>
+
 </body>
 </html>
