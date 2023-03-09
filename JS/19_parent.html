@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 프로젝트할 때 자바 스크립트를 js라는 별도의 파일로 만들어서 이용할 것. CSS랑 비슷하게 생각 CSS라는 파일에 별도로 저장해서 쓰듯이
+        js라는 파일을 헤드쪽에 포함시켜줘서 사용하게 될 것이다. -->
+    <script>
+        
+        // 고전 이벤트 ★ load이벤트는 거의 고전 이벤트로 적는다.(표준 이벤트로 적은 걸 볼 수 없다.)// window객체는 생략이 가능.
+        // ★load 이벤트 : 문서 내의 모든 구성요소를 인식할 수 있다. (script의 위치(순서) 상관없게 해준다.)
+        onload = ()=>{  
+            document.getElementById('btn_send').addEventListener('click', ()=> {
+            });
+            
+        }
+
+    </script>
+    <!-- load 이벤트 : html문서를 모두 읽은 다음에 이벤트를 처리하시오. (dom을 모두 읽은 다음에 동작한다.)
+            어디서도 동작할 수 있다(꼭 div 다음에 script를 써줄 필요가 없어짐). <script>의 위치가 어디든 상관없다. 상당히 많이 쓰이는 이벤트이다.
+            이걸 호출하려면 window객체가 필요하다.-->
+    <div>
+        <label for="mag">보낼 메시지</label>
+        <input type="text" id="msg">
+        <input type="button" id="btn_send" value="메시지전송">
+    </div>
+</body>
+</html>

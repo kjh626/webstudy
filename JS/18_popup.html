@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * { /* 이렇게 하면 여백이 사라진다. 닫기 버튼도 오그라듬..*/
+            padding: 0;
+            margin: 0;
+        }
+        .img {
+            width: 480px;
+            height: 317px;
+            background-image: url('../../images/flower1.jpg');
+            background-size: 480px 317px;
+        }
+        .footer {
+            width: 480px;
+            height: 36px;
+            text-align: right;
+            line-height: 36px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 창을 2개로 분리해 그림 1개, 닫기버튼 1개 만들 예정 -->
+    <div class="img"></div>
+    <div class="footer">
+        <input type="button" id="btn_close" value="닫기">
+    </div>
+    <!-- 창 크기를 딱 맞게 띄워 주려면? bom에서 feature 설정해줘라-->
+
+    <script>
+        document.getElementById('btn_close').addEventListener('click', ()=>{
+            window.close();   // window 생략가능
+        });
+    </script>
+</body>
+</html>
