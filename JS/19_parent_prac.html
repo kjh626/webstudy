@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        window.onload() = ()=>{
+            
+            var btnSend = document.getElementById('btn_send');
+            var msg = document.getElementById('msg');
+
+            var child = null;
+
+            function fnOpenChild(url, target){
+                const width = 480;
+                const height = 320;
+                const left = (screen.width - width) / 2;
+                const top = (screen.height - height) / 2;
+                const feature = 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top;
+
+                if(child == null || child.closed){
+                    child = window.open(url, target, feature);
+                }
+            }
+
+            function fnSendToChild(){
+                child.onload = ()=>{
+                    child.document.getElementById('receive_msg').textContent = msg.value;
+                }
+            }
+
+            btnSend.addEventListener('click', ()=>{
+                fnOpenChild('19_child_prac.html', '');
+                fnSendToChild();
+            });
+        }
+    </script>
+    <div>
+        <label for="msg">보낼 메시지</label>
+        <input type="text" id="msg">
+        <input type="button" id="btn_send" value="메시지전송">
+    </div>
+</body>
+</html>
