@@ -32,7 +32,7 @@
                 const top = (screen.height - height) / 2;
                 const feature = 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top;
                 // 창이 열려 있다면 열지 않기
-                if(child == null || child.closed){  // null: 열린적 없음. closed: 한 번 열렸다 닫힌 것을 기억함.
+                if(child == null || child.closed){  // null: 열린적 없음. closed: 한 번 열렸다 닫힌 것을 기억함.닫혔으면(true반환)
                     child = window.open(url, target, feature);   // 현재 열려있는 현재 창이 window라고 부른다. 자식 창의 이름을 child(변수이름)라고 줬다. 자식 창의 구성요소는 child.document.getElementById... 이렇게 찾아 쓸 수 있다.
                 }
                 
@@ -68,6 +68,6 @@
         <div>받은 메시지</div>
         <div id="receive_msg"></div>
     </div>
-
+<!-- https://developer.mozilla.org/ko/ : 잘 모르는 JavaScript 기능 같은 거를 찾아볼 수 있다. 검색을 활용해라 -->
 </body>
 </html>
