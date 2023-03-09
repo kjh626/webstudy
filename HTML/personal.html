@@ -14,7 +14,7 @@
                     <td>이메일</td>
                     <td>
                         <input type="text" name="id" id="user_id"> @
-                        <input type="text" list="domain" placeholder="선택 또는 직접입력" name="email" id="email">
+                        <input type="text" name="email" id="email" list="domain" placeholder="선택 또는 직접입력">
                         <datalist id="domain">
                             <option value="naver.com"/>
                             <option value="kakao.com"/>
@@ -25,9 +25,9 @@
                 <tr>
                     <td>생일</td>
                     <td>
-                        <input type="text" maxlength="4" size="4">년
-                        <input type="text" maxlength="2" size="2">월
-                        <input type="text" maxlength="2" size="2">일
+                        <input type="text" name="year" maxlength="4" size="4">년
+                        <input type="text" name="month" maxlength="2" size="2">월
+                        <input type="text" name="day" maxlength="2" size="2">일
                     </td>
                 </tr>
                 <tr>
