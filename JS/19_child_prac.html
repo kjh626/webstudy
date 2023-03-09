@@ -21,6 +21,12 @@
 
     <script>
 
+        var msg = document.getElementById('msg');
+        var btnSend = document.getElementById('btn_send');
+
+        btnSend.addEventListener('click', ()=>{
+            opener.document.getElementById('receive_msg').textContent = msg.value;
+        });
     </script>
 
 </body>
