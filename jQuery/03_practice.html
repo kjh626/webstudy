@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../resources/js/lib/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    
+    <script>
+        
+        $(function(){
+            
+            var div = $('div');
+            console.log(div);
+
+            var box = $('#box');
+            console.log(box);
+
+            var wrap = $('.wrap');
+            console.log(wrap);
+
+        })
+        
+    </script>
+    <div id="box" class="wrap"></div>
+
+    <script>
+        $(function(){
+
+            // 자식, 후손
+            console.log($('#sports > li'));
+            console.log($('#sports').find('li'));
+            console.log($('#sports a'));
+
+            console.log($('#sports').find('a'));
+            console.log($('#sports').children());
+            console.log($('#sports').children().children());
+
+            // 형제
+            console.log($('#football ~ li'));
+            console.log($('#football').siblings('li'));
+            console.log($('#football').siblings());
+
+            console.log($('#football + li'));
+            console.log($('#football').next());
+            console.log($('#football').nextAll());
+            console.log($('#billiard').prev());
+            console.log($('#billiard').prevAll());
+
+            // 부모
+            console.log($('#football').parents());
+            console.log($('#volleyball').parent());
+            console.log($('#football').parent().parent());
+            console.log($('#pingpong').closest('div'));
+
+        });
+    </script>
+    <div>
+        <div class="inner_wrap">
+            <ul id="sports">
+                <li id="football"><a href="javascript:void(0)">축구</a></li>
+                <li id="basketball"><a href="javascript:void(0)">농구</a></li>
+                <li id="volleyball"><a href="javascript:void(0)">배구</a></li>
+                <li id="pingpong"><a href="javascript:void(0)">탁구</a></li>
+                <li id="baseball"><a href="javascript:void(0)">야구</a></li>
+                <li id="billiard"><a href="javascript:void(0)">당구</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script>
+
+        $(function(){
+
+            // type으로 지정하기
+            console.log($('input[type=text]'));
+            console.log($(':text'));
+            console.log($(':password'));
+            console.log($(':radio'));
+
+            console.log($('#frm :text'));
+            console.log($('#frm :radio'));
+            console.log($('#frm :password'));
+
+            // 상태로 지정하기(:focus, :checked, :selected)
+            console.log($('#frm :focus'));
+            console.log($('#frm :checked'));
+            console.log($('#frm :radio:checked'));
+            console.log($('#frm :selected'));
+
+            // 상태 확인 메소드
+            // is(':focus')    : 포커스를 가졌다면 true 반환
+            // is(':checked')  : 체크되었다면 true 반환
+            // is(':selected') : 선택되었다면 true 반환
+            $('#frm :text').focus();
+            if($('#frm :text').is(':focus')){
+                console.log('text가 포커스를 가졌다.');
+            } else {
+                console.log('text가 포커스를 가지지 않았다.');
+            }
+        });
+
+    </script>
+    <div class="container">
+        <form id="frm">
+            <div><input type="text"></div>
+            <div><input type="password"></div>
+            <div>
+                <label for="male">
+                    <input type="radio" name="gender" value="male" id="male">남
+                </label>
+                <label for="female">
+                    <input type="radio" name="gender" value="male" id="female">녀
+                </label>
+                <label for="none">
+                    <input type="radio" name="gender" value="male" id="none" checked>선택안함
+                </label>
+            </div>
+            <div>
+                <select>
+                    <option value="">선택</option>
+                    <option id="02" value="02" selected>02</option>
+                    <option value="031">031</option>
+                    <option value="032">032</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -13,7 +13,7 @@
     <script>
         // 1. text() == textContent
         $('#box1').text('박스박스1');
-        console.log($('#box1').text());
+        console.log($(box1).text());
     </script>
 
     <div id="box2">
@@ -24,22 +24,72 @@
         console.log($('#box2').html());
         $('#box2').html('<p><strong>BOX2</strong></p>');
         $('#box2').html('<table border="1"><tbody><tr><td>새우깡</td><td>맛동산</td><td>새우깡</td></tr></tbody></table>')
+        $('#box2').html('<h1>BOX2</h1>')
     </script>
 
     <div id="box3">BOX3</div>
     <script>
         // 3. css() == style
-        $('#box3').css('color', '#f1d1d1')
-                  .css('font-size', '40px');
+        $('#box3').css('color', 'red')
+                  .css('font-size', '80px');
         $('#box3').css({
-           'background-color': '#bbbbbb',
-           'text-align': 'center',
-           'text-decoration': 'underline',
-           'font-weight': '900',
-           'font-style': 'italic'
+            'background-color': '#a77777',
+            'font-size': '50px',
+            'font-weight': '800',
+            'font-style': 'italic',
+            'text-decoration': 'underline',
+            'text-align': 'center'
         });
-
     </script>
 
+    <div>
+        <img id="img">
+    </div>
+    <script>
+        console.log($('#img').attr('id'));
+        $('#img').attr('alt', '이미지');
+        $('#img').attr('src', '../../images/fruit2.jpg');
+        $('#img').attr('width', '200px');
+    </script>
+
+    <div>
+        <a id="link">링크</a>
+    </div>
+    <script>
+        console.log($('#link').prop('id'));
+        $('#link').prop('href', 'https://www.daum.net');
+        $('#link').prop('target', '_blank');
+    </script>
+
+    <div>
+        <ul id="menu">
+            <li id="kimjji">집에서만든김치찌개</li>
+        </ul>
+    </div>
+    <script>
+        // 1. 부모-자식 관계로 추가하기
+        var menu = $('#menu');
+        menu.prepend('<li id="cheese">치즈</li>');
+        menu.append('<li id="pizza">피자</li>');
+        menu.prepend($('<li>').attr('id', 'beef').text('소고기'));
+        menu.append($('<li>').attr('id', 'pork').text('돼지고기'));
+
+        $('<li id="americano">아메리카노</li>').prependTo(menu);
+        $('<li id="latte">라떼</li>').appendTo(menu);
+        $('<li>').attr('id', 'chicken').text('치킨').prependTo(menu);
+        $('<li>').attr('id','hamburger').text('햄버거').appendTo(menu);
+        
+        // 2. 형제 관계로 추가하기
+        $('#kimjji').before('<li id="ramen">라면</li>');
+        $('#kimjji').after($('<li>').attr('id', 'rice').text('공깃밥'));
+    </script>
+
+    <div>
+        <ul id="movies">
+            <li id="terminator">터미네이터</li>
+            <li id="avatar">아바타</li>
+            <li id="alien">에일리언</li>
+        </ul>
+    </div>
 </body>
 </html>
