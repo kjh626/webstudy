@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../resources/js/lib/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    
+    <div id="box1">BOX1</div>
+    <script>
+        //    ↓ 메소드
+        // 1. text() == textContent (property) 
+        console.log($('#box1').text());  // 같은 이름의 기능이 2가지 이상있다. 오버로드
+        $('#box1').text('박스1');       // 매개변수가 없을 때는 텍스트내용물을 가져오고, 매개변수가 있으면 내용을 매개변수로 바꿔준다.
+
+    </script>
+
+    <div id="box2">
+        <p>BOX2</p>
+    </div>
+    <script>
+
+        // 2. html() == innerHTML (property)
+        console.log($('#box2').html());    // <p>태그 자체를 가지고 올 것
+        $('#box2').html('<h1>BOX2</h1>');
+
+    </script>
+
+    <div id="box3">BOX3</div>
+    <script>
+
+        // 3. css() == style
+        //     ①css 적용시키고 싶은 게 2개 이상이면 메소드 체이닝하면 됨. 
+        //     ②객체로 만들어서 2개 이상 줘도 된다.
+        $('#box3').css('color', '#c8c8c8')
+                  .css('font-size', '32px');
+        $('#box3').css({
+            'background-color': '#181818',
+            'text-align': 'center'
+        });
+    </script>
+
+    <div>
+        <img id="img">
+    </div>
+    <script>
+        
+        // 4. attribute == attr()  애트리뷰트 속성 조작하기
+        console.log($('#img').attr('id'));  // 애트리뷰트 확인하기
+        $('#img').attr('alt', '이미지');    // 애트리뷰트 인수 2개  => 오버로드 : 서로 다른 역할 수행한다.
+        $('#img').attr('src', '../../images/fruit1.jpg');
+        $('#img').attr('width', '200px');
+
+    </script>
+
+    <div>
+        <a id="link">링크</a>
+    </div>
+    <script>
+
+        // 5. property == prop()
+        console.log($('#link').prop('id')); // id속성은 property 이름이랑 attribute 이름이 같다.
+        $('#link').prop('href', 'https://www.naver.com');
+        $('#link').prop('target', '_blank');
+
+    </script>
+
+</body>
+</html>
