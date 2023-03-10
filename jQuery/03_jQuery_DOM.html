@@ -30,7 +30,11 @@
     <script>
 
         $(function(){
-
+            /* 정확한 이해가 필요하다! 객체를 찾는 법..?
+                ★★★ 이게 매우 중요하다. 누군가를 찾아서 수정을 하는 것... ★ 수정하는 메소드는 아는데 찾는 법을 몰라서 못하는 경우가 수두룩하다. 자식,후손,형제,부모,.. 찾는 법 연습하는 게 매우 중요하다.
+                 찾을 때 어떤 부모를 찾아서 내려간다. 하나 위로 올라가서 다른 쪽 찾아가는 경우 많다.
+                 앞으로 <div>구조가 복잡해질 것인데.. 위로 올라가서 다시 그 아이의 형제를 찾는 경우가 많을 것이다.
+            */
             // 4. 자식, 후손
             console.log($('#ott > li'));                  // 자식 중 li 태그
             console.log($('#ott').find('li'));            // 자식 중 li 태그
@@ -49,21 +53,85 @@
             // 5. 형제
             console.log($('#netflex ~ li'));                // 모든 형제 중 li 태그
             console.log($('#netflex').siblings('li'));      // 모든 형제 중 li 태그
+            console.log($('#netflex').siblings());          // 모든 형제
             console.log($('#netflex + li'));                // 인접 형제 li 태그
             console.log($('#netflex').next());              // 인접 형제
+            // jQuery에서만 쓸 수 있는 기능을 가진 여러 메소드 (이전 형제를 알아내는 방법은?, ...)
+            console.log($('#netflex').nextAll());           // 다음 모든 형제
+            console.log($('#watchar').prev());              // 이전 형제
+            console.log($('#watchar').prevAll());           // 이전 모든 형제
 
+            // 6. 부모
+            console.log($('#netflex').parents());           // 모든 부모
+            console.log($('#netflex').parent());            // 부모
+            console.log($('#netflex').parent().parent());   // 부모의 부모
+            console.log($('#netflex').closest('div'));      // 가장 가까운 div 부모
         });
 
     </script>
     <div>
-        <ul id="ott">
-            <li id="netflex"><a href="javascript:void(0)">넷플릭스</a></li>
-            <li id="disneyplus"><a href="javascript:void(0)">디즈니플러스</a></li>
-            <li id="wave"><a href="javascript:void(0)">웨이브</a></li>
-            <li id="coupangplay"><a href="javascript:void(0)">쿠팡플레이</a></li>
-            <li id="watchar"><a href="javascript:void(0)">왓챠</a></li>
-        </ul>
+        <div class="inner_wrap">
+            <ul id="ott">
+                <li id="netflex"><a href="javascript:void(0)">넷플릭스</a></li>
+                <li id="disneyplus"><a href="javascript:void(0)">디즈니플러스</a></li>
+                <li id="wave"><a href="javascript:void(0)">웨이브</a></li>
+                <li id="coupangplay"><a href="javascript:void(0)">쿠팡플레이</a></li>
+                <li id="watchar"><a href="javascript:void(0)">왓챠</a></li>
+            </ul>
+        </div>
     </div>
 
+    <script>
+
+        $(function(){   // 여기에 적어줘야 모두 인식한다. 
+
+            // type으로 지정하기
+            console.log($('input[type=text]'));    // input type=text
+            console.log($(':text'));               // input type=text
+            console.log($(':password'));           // input type=password
+            console.log($(':radio'));              // input type=radio
+            // 구역 지정 form 안에 있는 것들만
+            console.log($('#frm :text'));          // input type=text
+            console.log($('#frm :password'));      // input type=password
+            console.log($('#frm :radio'));         // input type=radio
+
+            // 상태로 지정하기(:foucs, :checked, :selected)
+            console.log($('#frm :focus'));
+            console.log($('#frm :checked'));        // 2개 나온다 : 선택안함, option(02) 
+            console.log($('#frm :radio:checked'));  // radio중에서 체크된 것
+            console.log($('#frm :selected'));
+
+            // 상태 확인 메소드
+            // is(':focus')    : 포커스를 가졌다면 true 반환
+            // is(':checked')  : 체크되었다면 true 반환   (radio, checkbox, select 3개 걸린다)
+            // is(':selected') : 선택되었다면 true 반환
+            $('#frm :text').focus();   // focus를 주기 위한 focus 메소드가 있다.
+            if($('#frm :text').is(':focus')){   // focus를 가졌느냐
+                console.log('text가 포커스를 가졌다.');
+            } else {
+                console.log('text가 포커스를 가지지 않았다.')
+            }
+        });
+
+    </script>
+    <div class="container">
+        <form id="frm">
+            <div><input type="text"></div>
+            <div><input type="password"></div>
+            <div>
+                <input type="radio" name="gender" value="male">남
+                <input type="radio" name="gender" value="female">녀
+                <input type="radio" name="gender" value="none" checked>선택안함
+            </div>
+            <div>
+                <select>
+                    <option value="">선택</option>
+                    <option value="02" selected>02</option>
+                    <option value="031">031</option>
+                    <option value="032">032</option>
+                </select>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
