@@ -66,5 +66,61 @@
         });
     </script>
     <div id="box3"></div>
+
+    <script>
+        $(()=>{
+            var list = [
+                {
+                    'name': '제시카',
+                    'age': 30,
+                },
+                {
+                    'name': '제임스',
+                    'age': 40,
+                }
+            ]
+            var people = $('#people');
+            $.each(list, (i, element)=>{
+                var tr = $('<tr>');
+                tr.append($('<td>').append(i+1));
+                tr.append($('<td>').append(element.name));
+                tr.append($('<td>').append(element.age));
+                people.append(tr);
+            });
+        });
+    </script>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>순번</td>
+                    <td>이름</td>
+                    <td>나이</td>
+                </tr>
+            </thead>
+            <tbody id="people"></tbody>
+        </table>
+    </div>
+
+    <script>
+        $(()=>{
+            var menu = $('.menu');
+            var menuList = [];
+            $.each(menu, (i, element)=>{
+                menuList.push($(element).text());
+            });
+            console.log(menuList);
+        });
+    </script>
+    <div>
+        <ul>
+            <li class="menu">메뉴1</li>
+            <li class="menu">메뉴2</li>
+            <li class="menu">메뉴3</li>
+            <li class="menu">메뉴4</li>
+            <li class="menu">메뉴5</li>
+        </ul>
+    </div>
+
 </body>
 </html>
