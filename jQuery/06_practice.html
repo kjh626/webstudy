@@ -22,22 +22,49 @@
     <div id="box1"></div>
     
     <script>
-        // 문자열
         $(function(){
+            /*
+            // 문자열
             var fourSeason = ['spring', 'summer', 'autumn', 'winter'];
             var str = '<select name="season">';
             $.each(fourSeason, (i, element)=>{
                 str += '<option value=' + (i + 1) + '">' + element + '</option>';
             });
             $('#box2').append(str);
-
-        // jQuery 
+            */
+            // jQuery 
             var fourSeason = ['spring', 'summer', 'autumn', 'winter'];
             var select = $('<select>').attr('name', 'season');
+            $.each(fourSeason, (i, element)=>{
+                // $('<option>').val(i + 1).text(element).appendTo(select);
+                $(select).append($('<option>').val(i + 1).text(element));
+            });
+            $('#box2').append(select);
         });
     </script>
-    <div id="box2">
+    <div id="box2"></div>
 
-    </div>
+    <script>
+        $(()=>{
+            var siteList = [
+                {
+                    'name': '구글',
+                    'url': 'https://www.google.co.kr',
+                    'target': '_self'
+
+                },
+                {
+                    'name': '네이버',
+                    'url': 'https://www.naver.com',
+                    'target': '_blank'
+                }
+            ];
+            var box3 = $('#box3');
+            $.each(siteList, (i, element)=>{
+                box3.append( $('<a>').attr('href', element.url).attr('target', element.target).text(element.name) );
+            });
+        });
+    </script>
+    <div id="box3"></div>
 </body>
 </html>

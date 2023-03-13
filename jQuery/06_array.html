@@ -70,10 +70,9 @@
                 }
             ];
             var box3 = $('#box3');
-            var a = $('<a>');
             $.each(siteList, (i, element)=>{
                 // console.log(i, element);   // 객체 어떻게 불러오는지 참고해라
-                box3.append( $('<a>').attr('href',element.url).attr('target', element.target).text(element.name) );
+                box3.append( $('<a>').attr('href', element.url).attr('target', element.target).text(element.name) );
             });
         });
     </script>
@@ -98,7 +97,7 @@
                 tr.append($('<td>').text(element.name));
                 tr.append($('<td>').text(element.age));
                 people.append(tr);
-                });
+            });
 
         });
     </script>
@@ -115,6 +114,56 @@
         </table>
     </div>
 
+    <script>
+        // 이미 작성되어있는 <li>list를 자바스크립트 배열로 바꿔주는 과정
+        $(()=>{
+            var menu = $('.menu');  // menu는 객체 x, 배열이다.
+            // 배열이니까 each로 돌려버려
+            var menuList = [];  // 비어있는 배열 선언할 때 var menuList = new Array();
+            $.each(menu, (i, element)=>{    // element는 <li class="menu">메뉴1</li> 리스트태그 자체임.
+                // push 는 자바스크립트 메소드, menuList는 자바스크립트 일반 객체.
+                // each의 element는 일반 객체이다. text()메소드는 jQuery 메소드임. => text()메소드를 쓰려면 element를 jQuery 객체로 바꿔야 한다.
+                menuList.push($(element).text());
+            });
+            console.log(menuList);
+        });
+    </script>
+    <div>
+        <ul>
+            <li class="menu">메뉴1</li>
+            <li class="menu">메뉴2</li>
+            <li class="menu">메뉴3</li>
+            <li class="menu">메뉴4</li>
+            <li class="menu">메뉴5</li>
+        </ul>
+    </div>
+
+    
+    <script>
+        $(()=>{
+            [
+                {
+                    'regionNo': '02',
+                    'regionName': '서울'
+                },
+                {
+                    'regionNo': '031',
+                    'regionName': '경기'
+                },
+                {
+                    'regionNo': '032',
+                    'regionName': '인천'
+                }
+            ]
+        });
+    </script>
+    <div>
+        <select id="region">
+            <option value="02">서울</option>
+            <option value="031">경기</option>
+            <option value="032">인천</option>
+        </select>
+    </div>
 
 </body>
 </html>
