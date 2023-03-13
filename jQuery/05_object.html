@@ -56,16 +56,10 @@
             // 객체의 프로퍼티 순회-2(each 메소드)  => ★ jQuery의 for 다. ★ 제일 많이 쓸 거임
             /*
                 일반적으로 배열이 제일 많이 들어감. 지금은 객체(obj)
-                each(객체, function(프로퍼티, 값){}) - 펑션에 매개변수(property, value)가 들어감
+                each(객체, function(프로퍼티, 값){}) - 펑션에 매개변수(property, value)가 들어감. each()는 알아서 p(property)값과 value값을 빼준다. 
                 each(객체, (프로퍼티, 값)=>{})
                     ※ $(obj).each(()=>{});  이런 사용법도 가능하다. 사용할 콜백만 넣어준 거임.
                       $.each(obj,()=>{});  - 이 방법을 더 많이 써서 우리도 이걸로 많이 할 거.
-            */
-
-            /* 
-            $.each(obj, function(p, value){   // each()는 알아서 p(property)값과 value값을 빼준다. 
-
-            }); 
             */
             // 화살표 함수
             var dl = $('<dl>');
