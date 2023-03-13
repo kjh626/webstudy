@@ -141,20 +141,22 @@
     
     <script>
         $(()=>{
-            [
-                {
-                    'regionNo': '02',
-                    'regionName': '서울'
-                },
-                {
-                    'regionNo': '031',
-                    'regionName': '경기'
-                },
-                {
-                    'regionNo': '032',
-                    'regionName': '인천'
-                }
-            ]
+
+            var optionList = [];
+            $.each($('#region option'), (i, element)=>{
+                // 빈 객체 생성
+                var option = {};
+                // 이렇게 해주면 자연스럽게 프로퍼티 생성 가능
+                // element는 일반 객체라서 $붙여줘야 함
+                option.regionNo = $(element).val();
+                option.regionName = $(element).text();
+                // 이렇게 하면 이제 객체 하나 만들어준 것
+                
+                optionList.push(option);
+                
+            });
+            console.log(optionList);
+            
         });
     </script>
     <div>
