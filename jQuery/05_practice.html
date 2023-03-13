@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        $(function(){
+
+            var obj = {
+                'title': '어린왕자',
+                'author': '생텍쥐페리',
+                'price': 15000
+            };
+            $.extend(
+                obj,
+                {
+                    'publisher': '그냥출판사',
+                    'pubDate': '2020-01-01'
+                }
+            )
+            var dl = $('<dl>');
+            for(let p in obj){
+                dl.append('<dt>' + p + '</dt>');
+                dl.append('<dd>' + obj[p] + '</dd>');
+            }
+            $('#box').append(dl);
+        });
+    </script>
+    <div id="box"></div>
+
+</body>
+</html>

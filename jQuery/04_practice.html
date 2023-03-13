@@ -99,5 +99,69 @@
         // 2. 모든 하위 요소 제거하기
         $('#movies').empty();
     </script>
+
+    <div>
+        <form id="frm">
+            <div>
+                <input type="text" placeholder="아이디">
+            </div>
+            <div>
+                <input type="password" placeholder="비밀번호">
+            </div>
+            <div>
+                <input type="radio" name="gender" value="male" id="male">
+                <label for="male">남성</label>
+                <input type="radio" name="gender" value="female" id="female">
+                <label for="female">여성</label>
+                <input type="radio" name="gender" value="none" id="none" checked>
+                <label for="none">선택안함</label>
+            </div>
+            <div>
+                <select>
+                    <option value="">선택하세요</option>
+                    <option value="서울" selected>서울</option>
+                    <option value="경기">경기</option>
+                    <option value="인천">인천</option>
+                </select>
+            </div>
+            <div>
+                <textarea>Hello World</textarea>
+            </div>
+        </form>
+    </div>
+    <script>
+
+    </script>
+
+    <style>
+        .big-text {
+            font-size: 40px;
+        }
+        .blue-text {
+            color: blue;
+        }
+    </style>
+    <div id="box4" class="invisible">
+        Hello World
+    </div>
+    <script>
+        // class 속성 추가
+        $('#box4').addClass('big-text').addClass('blue-text');
+        $('#box4').addClass('big-text blue-text');
+
+        // class 속성 제거
+        $('#box4').removeClass('big-text').removeClass('blue-text');
+        $('#box4').removeClass('big-text blue-text');
+
+        // class 속성 토글(추가와 제거가 번갈아가면서 적용)
+        $('#box4').toggleClass('big-text').toggleClass('big-text');
+        $('#box4').toggleClass('blue-text').toggleClass('blue-text');
+
+        // class 속성 확인
+        if($('#box4').hasClass('invisible')) {
+            $('#box4').css('opacity', '0');
+        }
+
+    </script>
 </body>
 </html>

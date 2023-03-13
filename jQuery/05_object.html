@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../resources/js/lib/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <script>
+
+        $(function(){
+            // 객체 생성 (자바스크립트와 다른 점 없다.)
+            var obj = {
+                'title': '홍길동전',
+                'author': '허균',
+                'price': 10000
+            };
+            // 프로퍼티 추가하기 ($.extend = jQuery.extend) 자바로 따지면 static , jQueryStatic이 메소드를 불러온 것이다.
+            $.extend(
+                obj,
+                {
+                    'publisher': '좋은출판사',    // obj 객체에 publisher 라는 프로퍼티 추가(객체로 적어줘야 한다.)
+                    'pubDate': '2023-03-13'
+                }  
+                
+            )
+            // 
+            // var box = $('#box'); // 이렇게 선언해 두는 것이 성능에 더 도움이 됨. 똑같은 함수($('#box'))를 계속 쓰지 않으니까.
+            // 왜 위에는 $쓰고 밑에는 $ 안 붙임? jQuery 메소드를 호출하려면 jQuery 객체여야하기 때문에...   $('<dl>').appendTo($('#box'));
+            var dl = $('<dl>');
+            /*
+            dl.append('<dt>title</dt>');
+            dl.append('<dd>' + obj.title + '</dd>');
+            dl.append('<dt>author</dt>');
+            dl.append('<dd>' + obj.author + '</dd>');
+            */
+            // 반복되니까 for문 가능할듯? js폴더의 10_object 복습 ㄱㄱ
+            // 객체의 순회-1(for-in문)
+            for(let p in obj){
+                dl.append('<dt>' + p + '</dt>');
+                dl.append('<dd>' + obj[p] + '</dd>');
+            }
+            $('#box').append(dl);
+
+            // 2번째 버전 dt태그의 내부 텍스트를 적어주는 것! text()써도 되겠다.
+            // $('#box').append($('<dt>').text(obj.title));
+            // $('#box').append($('<dt>').text(obj.author));
+            // $('#box').append($('<dt>').text(obj.price));
+            // $('#box').append($('<dt>').text(obj.publisher));
+            // $('#box').append($('<dt>').text(obj.pubDate));
+
+            
+            // 객체의 프로퍼티 순회-2(each 메소드)  => ★ jQuery의 for 다. ★ 제일 많이 쓸 거임
+            /*
+                일반적으로 배열이 제일 많이 들어감. 지금은 객체(obj)
+                each(객체, function(프로퍼티, 값){}) - 펑션에 매개변수(property, value)가 들어감
+                each(객체, (프로퍼티, 값)=>{})
+                    ※ $(obj).each(()=>{});  이런 사용법도 가능하다. 사용할 콜백만 넣어준 거임.
+                      $.each(obj,()=>{});  - 이 방법을 더 많이 써서 우리도 이걸로 많이 할 거.
+            */
+
+            /* 
+            $.each(obj, function(p, value){   // each()는 알아서 p(property)값과 value값을 빼준다. 
+
+            }); 
+            */
+            // 화살표 함수
+            var dl = $('<dl>');
+            $.each(obj, (p, value)=>{
+                dl.append('<dt>' + p + '</dt>');
+                dl.append('<dd>' + value + '</dd>');
+            });
+            $('#box').append(dl);
+        });
+    </script>
+    <div id="box"></div>
+</body>
+</html>
