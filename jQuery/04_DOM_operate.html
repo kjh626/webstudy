@@ -86,7 +86,7 @@
         menu.prepend('<li id="cheese">치즈</li>');
         // menu.prepend('<li id="' + cheese + '">' + 치즈 + '</li>');  //이렇게 변수 처리(cheese, 치즈)해주려면 귀찮긴 하다.
         menu.append('<li id="pizza">피자</li>');
-        menu.prepend($('<li>').attr('id', 'beef').text('소고기'));  // 변수처리할 때는 밑에 게 편하긴 하다.
+        menu.prepend($('<li>').attr('id', 'beef').text('소고기'));  // 변수처리할 때는 위에 거보다 이게 편하긴 하다.
         menu.append($('<li>').attr('id', 'pork').text('돼지고기')); // 어렵고 신경쓸 게 많다. 어려우면 위에 걸로 실무 보셈. 이 방법이 편할 때도 있다.
         
         $('<li id="americano">아메리카노</li>').prependTo(menu);
@@ -123,5 +123,94 @@
 
         // jQuery에서 클래스 조작하는 법, jQuery용 for문 돌리기, 이벤트 처리하는 법, ajax 처리하는 법 까지 다 하면 jQuery 끝남.
     </script>
+
+    <div>
+        <form id="frm">
+            <div>
+                <input type="text" placeholder="아이디">
+            </div>
+            <div>
+                <input type="password" placeholder="비밀번호">
+            </div>
+            <div>
+                <input type="radio" name="gender" value="male" id="male">
+                <label for="male">남성</label>
+                <input type="radio" name="gender" value="female" id="female">
+                <label for="female">여성</label>
+                <input type="radio" name="gender" value="none" id="none" checked>
+                <label for="none">선택안함</label>
+            </div>
+            <div>
+                <select>
+                    <option value="">선택하세요</option>
+                    <option value="서울" selected>서울</option>
+                    <option value="경기">경기</option>
+                    <option value="인천">인천</option>
+                </select>
+            </div>
+            <div>
+                <textarea>Hello World</textarea>
+            </div>
+        </form>
+    </div>
+    <script>
+        // input type=text  ※ 입력한 값은 value속성(property)에 저장이 된다.
+        $('#frm :text').css('background-color', 'silver');
+        $('#frm :text').prop('value', 'admin');
+        // 밸류 조작 전문 메소드 따로 있다. val()
+        $('#frm :text').val('master');    // 입력값을 조작하는 val 메소드
+        // 전화번호 입력할 때 -를 빼주던가 -를 넣어주는 사이트가 있는데 이런 경우에 value 조작을 해주는 것임
+
+        // input type=password
+        $('#frm :password').val('1234');
+
+        // input type=radio
+        console.log($('#frm :radio').val());            // 첫 번째 radio의 value  -> 이런 건 관심없음. check된 radio의 value를 알고 싶어한다. 그래야 사용자가 뭘 체크했는지 알 수 있기 때문이다.
+        console.log($('#frm :radio:checked').val());    // 체크된 radio의 value. -> 이런 정보를 원함.
+
+        // select  -> input 이 아니라 :select 도 못함.
+        console.log($('#frm select').val());    // 선택된 option의 value가 나온다.
+
+        // textarea  -> tag에 내용을 적어준다.
+        console.log($('#frm textarea').text());    // textarea는 val()를 사용하지 않고, text()를 사용한다.
+        $('#frm textarea').text('Hello jQuery');
+    </script>
+
+    <style>
+        .big-text {
+            font-size: 2em;  /* 1M 은 기본 글자크기의 M의 크기 (16px), 2em 은 2배 (부모의 텍스트의 2배라고 봐도 된다.) */
+        }
+        .red-text {
+            color: red;
+        }
+    </style>
+    <div id="box4" class="invisible">
+        Hello World
+    </div>
+    <script>
+
+        // class 속성 추가 
+        $('#box4').addClass('big-text').addClass('red-text'); // 메소드 체이닝 가능 (2개 불러오기) => 잘 안씀.
+        $('#box4').addClass('big-text red-text');             // 공백으로 class 구분
+
+        // class 속성 제거
+        $('#box4').removeClass('big-text').removeClass('red-text');
+        $('#box4').removeClass('big-text red-text');
+        // 아이디 입력할 때 안 되면 빨간색, 되면 초록색 클래스값을 줘서 조작해준다.
+
+        // class 속성 토글(추가와 제거가 번갈아가면서 적용) (※ 토글: 스위치를 생각)
+        // 없는데 토글 -> 생김, 있는데 토글 -> 없어짐
+        $('#box4').toggleClass('big-text').toggleClass('big-text');
+        $('#box4').toggleClass('red-text').toggleClass('red-text');
+        // => 클릭할 때마다 토글시키는 식으로 이벤트와 연결해서 생각
+
+        // class 속성 확인
+        if($('#box4').hasClass('invisible')){
+            $('#box4').css('opacity','0');   // 투명도를 0으로 설정하면 안 보인다.
+        }
+
+    </script>
+
+
 </body>
 </html>

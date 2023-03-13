@@ -96,10 +96,10 @@
             console.log($('#frm :radio'));         // input type=radio
 
             // 상태로 지정하기(:foucs, :checked, :selected)
-            console.log($('#frm :focus'));
-            console.log($('#frm :checked'));        // 2개 나온다 : 선택안함, option(02) 
-            console.log($('#frm :radio:checked'));  // radio중에서 체크된 것
-            console.log($('#frm :selected'));
+            console.log($('#frm :focus'));          // 포커스를 가진 요소
+            console.log($('#frm :checked'));        // 체크된 요소(radio, checkbox, select) 2개 나온다 : 선택안함, option(02) 
+            console.log($('#frm :radio:checked'));  // radio 중 체크된 요소
+            console.log($('#frm :selected'));       // 선택된 요소(select)
 
             // 상태 확인 메소드
             // is(':focus')    : 포커스를 가졌다면 true 반환
