@@ -39,10 +39,29 @@
     </script>
 
     <div>
-        <a href="https://www.naver.com" target="_blank" id="link">네이버</a>
+        <a href="https://www.naver.com" target="_blank" class="link">네이버</a>
+        <a href="https://www.kakao.com" target="_blank" class="link">카카오</a>
+        <a href="https://www.google.com" target="_blank" class="link">구글</a>
     </div>
     <script>
+        $('.link').on('click', (event)=>{
+            if($(event.target).text() == '구글'){
+                alert($(event.target).text() + '로 이동이 불가능합니다.')
+                event.preventDefault();    // a 태그의 기본 클릭 이벤트는 href로 이동하는 것인데 이걸 막는 코드이다. (등록된 기본 이벤트를 수행하지 마시오.)
+                return;                    // 이벤트 리스너를 종료시킨다.
+            }
+            alert($(event.target).text() + '로 이동합니다');   // 네이버로 이동합니다. 카카오로 이동합니다.
+        });
+        // jQuery에서는 대상이 여러 개여도 이벤트 처리하는 방법 똑같다.
+        /* 가볍게 봐라.
+            자바스크립트에서는 대상이 여러개일 경우 이벤트를 걸어줄 때 이렇게(for문) 이벤트를 처리해줬음. (14_form의 4.체크박스에서 해줬었음)
+        var linkList = $('.link');
+        for(let i = 0; i < linkList.length; i++){
+            $(linkList[i]).on('click', (event)=>{
 
+            });
+        }
+        */
     </script>
 
 
