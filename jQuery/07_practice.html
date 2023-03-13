@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="../resources/js/lib/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 
@@ -14,8 +15,29 @@
         <a href="https://www.google.com" target="_blank" class="link">구글</a>
     </div>
     <script>
-        
+        $('.link').on('click', function(){
+            if($(this).text() == '구글'){
+                alert($(this).text() + '로 이동이 불가능합니다');
+                event.preventDefault();
+                return;
+            }
+            alert($(this).text() + '로 이동합니다.');
+        });
     </script>
 
+    <div id="box"></div>
+    <script>
+        // <div id="box"></div>에 요소를 추가한다. (동적 요소)
+        $('#box').append('<button id="btn">버튼</button>');
+
+        // 동적 요소에 이벤트 등록하기
+        $('#btn').on('click', function(){
+            $(this).after('<p>하하하</p>');
+        });
+        // 이벤트로 생성한 동적 요소에 이벤트 등록하기
+        $('#box').on('click', 'p', function(){
+            $(this).css('background-color', 'skyblue');
+        });
+    </script>
 </body>
 </html>
