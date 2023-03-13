@@ -122,5 +122,25 @@
         </ul>
     </div>
 
+    <script>
+        $(()=>{
+            var optionList = [];
+            $.each($('#region option'), (i, element)=>{
+                var option = {};
+                option.regionNo = $(element).val();
+                option.regionName = $(element).text();
+                optionList.push(option);
+            });
+            console.log(optionList);
+        });
+    </script>
+    <div>
+        <select id="region">
+            <option value="02">서울</option>
+            <option value="031">경기</option>
+            <option value="032">인천</option>
+        </select>
+    </div>
+
 </body>
 </html>
