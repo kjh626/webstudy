@@ -51,7 +51,13 @@
         /*
             Promise
             1. 비동기 처리를 할 때 응답이 올 때까지 기다리는 JavaScript 객체이다.(jQuery객체 아님.)
-            2. then() 메소드는 성공할 때 실행하고, catch() 메소드는 실패할 때 실행한다.
+            2. 비동기 처리가 완료된 이후에 응답을 성공(success)과 실패(error)를 모두 처리할 수 있다.
+            3. Promise 상태
+                1) pending   : 대기상태, 이행(fulfilled)하지도, 거부(reject)하지도 않은 초기 상태
+                2) fulfilled : 이행상태, 비동기 처리가 성공적으로 완료된 상태
+                3) rejected  : 거부상태, 비동기 처리가 실패한 상태
+            4. Promise.resolve()가 반환하는 프로미스 값은 then() 메소드를 따라가서 처리된다.
+            5. Promise.reject()가 반환하는 프로미스 값은 catch() 메소드를 따라가서 처리된다.
         */
     </script>
     <script>
@@ -59,8 +65,8 @@
         // Promise 객체 생성하기 
         var promise = new Promise(function(resolve, reject){      // 함수로 받아오는 것  // resolve : then() 메소드가 전달하는 함수가 저장  ★★ then(아래의 promise.then)과 resolve(function(resolve,~))는 함께 동작한다.
                                                                                          // reject  : catch() 메소드가 전달하는 함수가 저장 ★★ catch(아래의 promise.catch)과 reject(function(~,reject))는 함께 동작한다.
-            // resolve();  // then메소드가 호출하고 있는 펑션(alert('resolve() 호출'))을 실행
-            reject();   // catch메소드가 호출하고 있는 펑션(alert('reject() 호출'))을 실행
+            // resolve();  // then메소드가 정의하고 있는 펑션(alert('resolve() 호출'))을 실행
+            reject();   // catch메소드가 정의하고 있는 펑션(alert('reject() 호출'))을 실행
         });
         // Promise 객체의 then() 메소드 호출하기
         promise.then(function(){
@@ -92,17 +98,20 @@
                     resolve(data);  // resolve를 호출하면 then() 메소드에서 정의한 함수에 연결, ajax 응답이 온 뒤 resolve()가 호출된다.
                 },
                 error: function(jqXHR){
-                    reject(jqXHR);  // reject를 호출하면 catch() 메소드에서 정의한 함수에 연결
+                    reject(jqXHR);  // reject를 호출하면 catch() 메소드에서 정의한 함수에 연결, ajax 응답이 실패한 뒤 resection()가 호출된다.
                 }
             });
 
-        }).then(function(param){    // resolve(data); 호출로 인해서 매개변수 param에 data가 전달된다. 위의 resolve(data)와 이 펑션의 형태를 맞춰줘야 한다(여기의 data가 param으로 가는 거임.)
+        }).then(function(param){    // resolve(data); 호출로 인해서 매개변수 param에 data가 전달된다. / 위의 resolve(data)와 이 펑션의 형태를 맞춰줘야 한다(여기의 data가 param으로 가는 거임.)
             alert(param);
         }).catch(function(param){   // reject(jqXHR); 호출로 인해서 매개변수 param에 jqXHR이 전달된다.
             alert(param.status + '(' + param.statusText + ')');
         });
 
     </script>
+
+    
+
 
 </body>
 </html>
