@@ -21,7 +21,7 @@
         $('#btn1').on('click', function(){  // 이벤트 등록
             $.ajax({    // 사용할 property: value 넣어주면 된다. (키:밸류 라고 봐도..) . 프로퍼티 쓸 때 ''(따옴표) 없어도 된다.
                 // 요청(open(HTTP Method, URL, Sync/Async))
-                type: 'get',         // HTTP Method(GET, POST)
+                type: 'GET',         // HTTP Method(GET, POST)
                 url: 'product.txt',  // URL (서버 경로) . => ※ jsp로 넘어가면 서버 주소로 적어줄 수 있게될 거임.
                 async: true,         // 비동기(true, 생략가능), 동기(false)
                 // 응답
@@ -48,5 +48,65 @@
 
     </script>
 
+    <div id="box2">
+        <button id="btn2">XML 요청1</button>
+    </div>
+    <script>
+        $('#btn2').on('click', function(){
+            $.ajax({
+                type: 'GET',
+                url: 'product1.xml',
+                async: true,
+                dataType: 'xml',
+                success: function(data){    // var data = xhr.responseXML; 이라고 해석해도 되겠다.
+                    // find 메소드를 써서 태그를 찾을 거임. 
+                    var productList = $(data).find('product');
+                    $.each(productList, (i, product)=>{
+                        // product 태그 안에 model태그의 텍스트를 가져오려면 어떻게 해야할까? => 실전에서 많이 쓰게될 것
+                        // product는 지금 일반 객체. jQuery 객체화 시켜서 find메소드를 사용할 수 있게 해주고 find를 통해 model태그를 가져와 거기서 text()를 통해서 내부 텍스트를 뽑아낸다.
+                        // => ul태그에 넣어줄 거임.
+                        var ul = $('<ul>');
+                        ul.append( $('<li>').text( $(product).find('model').text() ) );
+                        ul.append( $('<li>').text( $(product).find('maker').text() ) );
+                        ul.append( $('<li>').text( $(product).find('price').text() ) );  // 이것도 model, maker, price 이 부분만 달라지니 loop문 가능, each문 2개 들어간다. i,product에서 product에 each문 넣기?
+                        $('#box2').append(ul);
+                    });
+                },
+                error:  function(jqXHR){
+                    $('#box2').append($('<div>').text(jqXHR.status));
+                    $('#box2').append($('<div>').text(jqXHR.statusText));
+                }
+            });
+        });
+
+    </script>
+
+    <div id="box3">
+        <button id="btn3">XML 요청2</button>
+    </div>
+    <script>
+        $('#btn3').on('click', function(){
+            $.ajax({
+                type: 'GET',
+                url: 'product2.xml',
+                async: true,
+                dataType: 'xml',
+                success: function(data){
+                    var table = $('<table border="1" id="ta">');
+                    $.each($(data).find('product'), (i, product)=>{
+                        var tr = $('<tr>');
+                        tr.append( $('<td>').text( $(product).attr('model') ) );
+                        tr.append( $('<td>').text( $(product).attr('maker') ) );
+                        tr.append( $('<td>').text( $(product).attr('price') ) );
+                        
+                        $('#box3').append(table.append(tr));
+                    });
+                },
+                error: function(jqXHR){
+                    alert(jqXHR.status + jqXHR.statusText);
+                }
+            })
+        });
+    </script>
 </body>
 </html>
