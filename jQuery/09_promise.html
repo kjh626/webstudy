@@ -139,12 +139,63 @@
                         } else {
                             // 인증코드 보내기 실패
                         }
-                        
                     }
                     
                 })
             })
         }
+
+    </script>
+
+    <script>
+
+        // Promise 객체가 필요한 또 다른 경우 : 타이머 함수
+
+        var a;    // a = undefined
+        setTimeout(function(){
+            a = 10; // 3초 후에 a = 10;이 처리된다.
+        }, 3000);
+        console.log(a);   // undefined 경고창이 뜬다. 3초를 기다려주지 않는다. 타이머도 비슷하다.
+        // promise를 적용해서 3초후에 a의 값이 10으로 나오게 해보자
+
+    </script>
+
+    <script>
+
+        // Promise로 타이머 함수 동작 해결하기
+
+        var a;   // a = undefined
+        new Promise(function(resolve, reject){ // 성공하면 resolve라는 이름으로 메소드 호출하기, 실패하면 reject라는이름으로 메소드 호출하기
+            setTimeout(function(){
+                resolve();
+            }, 3000);   // 3초 후에 resolve가 호출된다.
+        }).then(function(){
+            a = 10;
+            console.log(a);   // 3초 후에 resolve가 호출되는데 resolve는 function(){a = 10; alert(a);}을 호출한다.
+        })
+
+    </script>
+
+    <script>
+
+        // 소개. Promise 대신 콜백으로 처리하기
+        function fnFunc(callback){
+            $.ajax({
+                // 요청
+                type: 'GET',
+                url: 'product.txt',
+                async: true,
+                // 응답
+                dataType: 'text',
+                success: function(data){
+                    callback(data);    // 응답 결과를 다른 함수로 넘겨서 처리
+                }
+            });
+        }
+
+        fnFunc(function(data){      // 매개변수 callback으로 전달되는 익명 함수
+            alert(data);
+        });
 
     </script>
 
