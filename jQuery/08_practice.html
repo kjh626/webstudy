@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../resources/js/lib/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <div id="box1">
+        <button id="btn1">텍스트 응답 처리</button>
+    </div>
+    <script>
+
+        $('#btn1').on('click', function(){
+            $.ajax({
+                type: 'GET',
+                url: 'product.txt',
+                async: true,
+                dataType: 'text',
+                success: function(data){
+                    // $('#btn1').after($('<div>').text(data));
+                    $('#box1').append($('<div>').text(data));
+                },
+                error: function(jqXHR){
+                    $('#box1').append($('<div>').text(jqXHR.status));
+                    $('#box1').append($('<div>').text(jqXHR.statusText));
+                    $('#box1').after(jqXHR.responseText);
+                }
+            });
+        });
+
+    </script>
+
+    <div id="box2">
+        <button id="btn2">XML 요청1</button>
+    </div>
+    <script>
+        $('#btn2').on('click', function(){
+            $.ajax({
+                type: 'GET',
+                url: 'product1.xml',
+                async: true,
+                dataType: 'xml',
+                success: function(data){
+                    console.log(data);
+                    /*
+                    
+                    여기 아지 강ㄴ 한
+                    
+                    
+                    */
+                },
+                error: function(jqXHR){
+                    $('#box2').append($('<div>').text(jqXHR.status));
+                    $('#box2').append($('<div>').text(jqXHR.statusText));
+                    $('#box2').append($('<div>').text(jqXHR.responseText));
+                }
+            });
+        });
+    </script>
+
+
+    <div id="box3">
+        <button id="btn3">XML 요청2</button>
+    </div>
+    <script>
+        $('#btn3').on('click', function(){
+            $.ajax({
+                type: 'GET',
+                url: 'product2.xml',
+                async: true,
+                dataType: 'xml',
+                success: function(data){
+                    var table = $('<table border="1" id="ta">');
+                    $.each($(data).find('product'), (i, product)=>{
+                        var tr = $('<tr>');
+                        tr.append( $('<td>').text( $(product).attr('model') ) );
+                        tr.append( $('<td>').text( $(product).attr('maker') ) );
+                        tr.append( $('<td>').text( $(product).attr('price') ) );
+                        
+                        $('#box3').append(table.append(tr));
+                    });
+                },
+                error: function(jqXHR){
+                    alert(jqXHR.status + jqXHR.statusText);
+                }
+            })
+        });
+    </script>
+
+</body>
+</html>
