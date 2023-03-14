@@ -65,8 +65,8 @@
         // Promise 객체 생성하기 
         var promise = new Promise(function(resolve, reject){      // 함수로 받아오는 것  // resolve : then() 메소드가 전달하는 함수가 저장  ★★ then(아래의 promise.then)과 resolve(function(resolve,~))는 함께 동작한다.
                                                                                          // reject  : catch() 메소드가 전달하는 함수가 저장 ★★ catch(아래의 promise.catch)과 reject(function(~,reject))는 함께 동작한다.
-            // resolve();  // then메소드가 정의하고 있는 펑션(alert('resolve() 호출'))을 실행
-            reject();   // catch메소드가 정의하고 있는 펑션(alert('reject() 호출'))을 실행
+            resolve();  // then메소드가 정의하고 있는 펑션(alert('resolve() 호출'))을 실행
+            // reject();   // catch메소드가 정의하고 있는 펑션(alert('reject() 호출'))을 실행
         });
         // Promise 객체의 then() 메소드 호출하기
         promise.then(function(){
@@ -90,7 +90,7 @@
             $.ajax({
                 // 요청
                 type: 'GET',
-                url: 'roduct.txt',
+                url: 'product.txt',
                 async: true,
                 // 응답
                 dataType: 'text',
@@ -103,14 +103,50 @@
             });
 
         }).then(function(param){    // resolve(data); 호출로 인해서 매개변수 param에 data가 전달된다. / 위의 resolve(data)와 이 펑션의 형태를 맞춰줘야 한다(여기의 data가 param으로 가는 거임.)
-            alert(param);
+            console.log(param);
         }).catch(function(param){   // reject(jqXHR); 호출로 인해서 매개변수 param에 jqXHR이 전달된다.
-            alert(param.status + '(' + param.statusText + ')');
+            console.log(param.status + '(' + param.statusText + ')');
         });
 
     </script>
 
-    
+    <script>
+
+        // ajax 동작 완료 후 다른 ajax 동작으로 연결되는 경우
+
+        // 시나리오
+        // 1. 입력된 이메일이 기존 회원 정보에 등재된 이메일이 아니면 새로 등록함을 허용한다.
+        // 2. 이메일 인증을 통해서 인증 받은 이메일만 새로 등록함을 허용한다.
+
+        function fnValidEmail(){
+            new Promise(function(resolve, reject){
+                $.ajax({
+                    // 사용자가 입력한 이메일이 DB에 있는지 점검을 요청
+                    success: function(data){
+                        if(data){
+                            resolve();   // 사용 가능한 이메일이다.
+                        } else {
+                            reject();    // 사용 불가능한 이메일이다.
+                        }
+                    }
+                });
+            }).then(function(){
+                $.ajax({  // 사용 가능한 이메일 -> 두 번째 ajax 호출
+                        // 사용자가 입력한 이메일로 인증코드를 보내달라는 요청
+                    success: function(data){
+                        if(data){
+                            // 인증코드 보내기 성공
+                        } else {
+                            // 인증코드 보내기 실패
+                        }
+                        
+                    }
+                    
+                })
+            })
+        }
+
+    </script>
 
 
 </body>
