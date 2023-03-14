@@ -34,9 +34,10 @@
                 },
                 // ajax 처리 실패했을 때 수행할 펑션.
                 error: function(jqXHR){    // 매개변수 jqXHR로 에러 정보가 자동 전달된다. (예: 응답코드 같은 번호가 넘어온다 - 200(성공), 4xx, 5xx)
-                    $('#box1').append($('<div>').text(jqXHR.status));      // 응답코드(status): 숫자(404)
+                    $('#box1').append($('<div>').text(jqXHR.status));      // 응답코드(status): 숫자(404) => 없는 파일이름으로 바꿔줘서 테스트해보셈
                     $('#box1').append($('<div>').text(jqXHR.statusText));  // 응답코드텍스트: 문자(Not Found)
                     $('#box1').after(jqXHR.responseText);                  // 응답텍스트   (서버가 전송한 예외메시지)
+                    // ※ 나중에는 실패(error)를 이렇게 공들여서 만들어줄 필요는 없다.
                 }  
             });
             /* 버튼 밑에 받아온 데이터 추가하기 
