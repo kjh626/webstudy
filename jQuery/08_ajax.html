@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../resources/js/lib/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    
+    <div id="box1">
+        <button id="btn1">텍스트 응답 처리</button>
+    </div>
+    <script>
+        // 서버가 응답해주는 데이터를 파일의 형태로 형상화 시켜서 실습했었음. (json, xml, txt 확장자)
+
+        // 텍스트 응답 처리 버튼을 클릭하면 product.txt 내용을 요청하고 받아오는 방식으로 ajax처리할 예정
+
+        // ☆ 이 부분 잘 해야 한다. ☆
+        $('#btn1').on('click', function(){  // 이벤트 등록
+            $.ajax({    // 사용할 property: value 넣어주면 된다. (키:밸류 라고 봐도..) . 프로퍼티 쓸 때 ''(따옴표) 없어도 된다.
+                // 요청(open(HTTP Method, URL, Sync/Async))
+                type: 'get',         // HTTP Method(GET, POST)
+                url: 'product.txt',  // URL (서버 경로) . => ※ jsp로 넘어가면 서버 주소로 적어줄 수 있게될 거임.
+                async: true,         // 비동기(true, 생략가능), 동기(false)
+                // 응답
+                dataType: 'text',    // 응답 데이터의 타입(text, xml, json)
+                // 응답이 성공했는지 여부는 자바스크립트에서는 이벤트 걸어서 일일이 체크했었음. ajax에서는 success 라는 프로퍼티가 있다.
+                success: function(data){    // 성공했을 때 수행할 펑션을 넣어준다. -> 응답이 성공했을 때 펑션의 매개변수 data로 응답 데이터(respnoseText,responseXML,JSON.parse)가 자동 전달된다.
+                    // $('#btn1').after('<div>' + data + '</div>');
+                    $('#btn1').after($('<div>').text(data));   // div를 jQuery객체로 바꿔서 태그 내부 텍스트로 넣는 방법
+                    // $('#box1').append($('<div>').text(data));
+                },
+                // ajax 처리 실패했을 때 수행할 펑션.
+                error: function(jqXHR){    // 매개변수 jqXHR로 에러 정보가 자동 전달된다. (예: 응답코드 같은 번호가 넘어온다 - 200(성공), 4xx, 5xx)
+                    $('#box1').append($('<div>').text(jqXHR.status));      // 응답코드(status): 숫자(404)
+                    $('#box1').append($('<div>').text(jqXHR.statusText));  // 응답코드텍스트: 문자(Not Found)
+                    $('#box1').after(jqXHR.responseText);                  // 응답텍스트   (서버가 전송한 예외메시지)
+                }  
+            });
+            /* 버튼 밑에 받아온 데이터 추가하기 
+                1) 부모 기준으로 추가하기 $('#box1').append(data)  
+                2) $('#btn1').after(data) => this로 하면 안 된다. (success에서 또다른 function이 있기 때문에... success라는 프로퍼티를 this로 인식하기 때문에 success에서 after를 할 때 이상해져서 오류뜸)
+            */
+        });
+
+    </script>
+
+</body>
+</html>
