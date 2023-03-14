@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../resources/js/lib/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    
+    <div id="box1">
+        
+    </div>
+    <script>
+        
+
+        // 초기 이미지와 버튼
+            /* 
+            .html (안에 원래 있는 요소를 덮어쓰기 함) 또는 .append (있던 거에 추가) 로 넣어주면 된다. 
+            속성의 경우 attr() 또는 prop() 가능
+            너비는 attr('width') 또는 css('너비') 조정해줘도 됨.
+            */
+        $('#box1').html($('<img>').attr('id', 'light').attr('src', '../../images/light1.png').attr('width', '100px'));
+        $('#box1').append($('<button>').data('state', '0').attr('id', 'btn1').text('OFF'));
+
+        // click 이벤트  => on('click', function(){})안 붙이고 그냥 .click(function(){}) 메소드를 붙여줘도 된다. 메소드로 만들어 놨음. ※ 이벤트 리스너의 매개변수에는 항상 event(이벤트 객체)이 들어갈 수 있다. (=function(event){})
+        $('#btn1').click(function(event){
+            /* 
+                이벤트 대상(target)
+                1. event.target
+                2. this
+            */
+            // 데이터 속성 : css에서 배움 . <button data-state="1">OFF</button>
+            // data- 까지는 약속, 변수값을 저장하고 싶을 때 사용. 변수이름과 값을 작성하여 사용 가능
+            // 이걸 jQuery로 작성하는 방법 ->  $('<button>').data('state', '1');
+            
+            // btn1의 data-state="0"이면 OFF, data-state="1"이면 ON으로 처리한다.
+            // <img>태그를 쉽게 불러오려면 id를 주면 쉽게 불러올 수 있다.
+            if($(this).data('state') == 0){
+                $('#light').attr('src', '../../images/light2.png');
+                $(this).text('ON').data('state', '1');
+            } else {
+                $('#light').attr('src', '../../images/light1.png');
+                $(this).text('OFF').data('state', '0');
+            }
+            // 등호 2개 쓰면 타입이 안 맞아도 같은 값으로 본다. 타입 검사까지 하려면 === 등호를 3개를 줘라
+        });
+
+    </script>
+
+    <hr>
+
+    <div id="box2">
+        
+        <!-- 
+            기본적인 아이디어는 배열을 만들어서 이전 버튼을 누르면 -1 단위로 인덱스가 감소해서 4→3 이런식으로 인덱스 0 에서 이전버튼 누르면 인덱스4로 갈 수 있도록...
+            다음 버튼도 똑같은 방식으로 +1 단위로 인덱스 증가..
+        --> 
+        <div>
+            <button id="btn_prev">이전</button>
+            <span id="image_no"></span>
+            <button id="btn_next">다음</button>
+        </div>
+        <div id="image_box">
+
+        </div>
+    </div>
+    <style>
+        #image_box {
+            width: 480px;
+            height: 320px;
+            background-size: 100% 100%;    /* 480px 320px 박스와 동일한 크기(100% 100%) */
+            background-repeat: no-repeat;
+        }
+    </style>
+    <script>
+        
+        // 전역 배열 및 인덱스(모든 함수에서 사용할 수 있다.)
+        var imageList = ['animal1.jpg','architecture1.jpg', 'flower1.jpg', 'fruit1.jpg', 'nature1.jpg'];
+        var i = 0; // 초기화라고 봐서 0값을 줌
+        
+        // 이미지와 번호를 표시하는 함수
+        function fnImageDisplay(){
+            $('#image_box').css('background-image', 'url(../../images/' + imageList[i] +')');
+            $('#image_no').text((i + 1) + '/' +  (imageList.length));
+        }
+
+        // 이미지 변경함수 (매개변수 하나 (1 또는 -1을 전달받는))
+        function fnImageSlide(n){
+            i += n;   // 4 + 1 하면 5가 되는데?  5/5 다음버튼-> 1/5 
+            // i %= imageList.length;  // 5로 나눈 나머지 0~4값 (5나누기5의 나머지 = 0). i의 값이 5이상을 넘어가지 못한다.
+            if(i == imageList.length){
+                i = 0;
+            } else if(i == -1){
+                i = imageList.length -1;
+            }
+            fnImageDisplay();
+        }
+
+        // 이전 버튼 click 이벤트
+        $('#btn_prev').click(function(event){
+            fnImageSlide(-1)
+        });
+
+        // 다음 버튼 click 이벤트
+        $('#btn_next').click(function(event){
+            fnImageSlide(1)
+        });
+
+        // 함수 호출 . ※ 작업 분리할 때 함수만한 게 없다.
+        fnImageDisplay();
+
+    </script>
+
+</body>
+</html>
