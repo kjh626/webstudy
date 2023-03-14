@@ -45,13 +45,14 @@
                 async: true,
                 dataType: 'xml',
                 success: function(data){
-                    console.log(data);
-                    /*
-                    
-                    여기 아지 강ㄴ 한
-                    
-                    
-                    */
+                    var productList = $(data).find('product');       
+                    $.each(productList, (i, product)=>{
+                        var ul = $('<ul>');
+                        ul.append( $('<li>').text($(product).find('model').text()) );
+                        ul.append( $('<li>').text($(product).find('maker').text()) );
+                        ul.append( $('<li>').text($(product).find('price').text()) );
+                        $('#box2').append(ul);
+                    });           
                 },
                 error: function(jqXHR){
                     $('#box2').append($('<div>').text(jqXHR.status));
@@ -90,6 +91,33 @@
             })
         });
     </script>
-
+    <div id="box4">
+        <button id="btn4">JSON 요청</button>
+    </div>
+    <script>
+        $('#btn4').on('click', function(){
+            $.ajax({
+                type: 'GET',
+                url: 'product.json',
+                async: true,
+                dataType: 'json',
+                success: function(data){
+                    $.each(data, (i, product)=>{
+                        var ul = $('<ul>');
+                        ul.append($('<li>').text(product.model));
+                        ul.append($('<li>').text(product.maker));
+                        ul.append($('<li>').text(product.price));
+                        $('#box4').append(ul);
+                    });
+                },
+                error: function(jqXHR){
+                    $('#box4').append($('<div>').text(jqXHR.status));
+                    $('#box4').append($('<div>').text(jqXHR.statusText));
+                    $('#box4').append($('<div>').text(jqXHR.responseText));
+                }
+            });
+        });
+    </script>
+<!-- book 조회하기 안 했음 -->
 </body>
 </html>
