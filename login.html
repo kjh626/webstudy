@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <div class="wrap">
+        <!-- <header> 는 위에다 두는 <div> -->
+        <header>
+            <a href="https://www.gdu.co.kr/main/main.html">
+                <img src="https://www.gdu.co.kr/images/main/logo.png" width="200px">
+            </a>
+        </header>
+        <!-- <section> 본문에 배치하는 <div> -->
+        <section>
+            <form id="frm_login" method="post" action="/">
+                <div>
+                    <strong>※ 회원구분을 위해 체크해주세요</strong>
+                    <input type="radio" name="gubun" value="1" id="sugangsang">
+                    <label for="sugangsang">수강생</label>
+                    <input type="radio" name="gubun" value="2" id="ilban">
+                    <label for="ilban">일반회원</label>
+                </div>
+                <div>
+                    <!-- 꼭 name속성이 필요. submit할 것처럼 만들어라 -->
+                    <input type="text" name="id" id="id" placeholder="아이디">
+                    <div id="msg_id"></div>
+                </div>
+                <div>
+                    <input type="password" name="pw" id="pw" placeholder="●●●●">
+                </div>
+                <div>
+                    <button>로그인</button>
+                </div>
+            </form> 
+        </section>
+        <!-- 로그인 버튼 아래 -->
+        <footer>
+            <div>
+                <p><strong>아직 회원이 아닌가요?</strong></p>
+                <p>가입하면 다양한 서비스 이용이 가능합니다.</p>
+                <a href="javasript:void(0)">회원가입</a>
+            </div>
+            <div>
+                <p><strong>아이디/비밀번호를 잊으셨나요?</strong></p>
+                <p>간단하게 아이디/비밀번호를 찾을 수 있습니다.</p>
+                <a href="javasript:void(0)">아이디/비밀번호 찾기</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+
+        var idPass = false;
+
+        $('#id').on('keyup', function(){
+            // 아이디 입력란에 입력된 값 : $(this).val() == this.value
+            let idValue = $(this).val();
+            if(idValue.length == 0){
+                $('#msg_id').text('');
+                idPass = false;
+            } else if(idValue.length < 4){
+                $('#msg_id').text('아이디는 4자 이상입니다.').css('color', '#FF0000').css('font-size', '14px');
+                idPass = false;
+            } else {
+                $('#msg_id').text('정상적인 아이디입니다.').css('color', '#0000FF').css('font-size', '14px');
+                idPass = true;
+            }
+            // idPass = idValue.length >= 4;  idPass의 값이 true 가 된다. if문 마다 넣어주든가 이렇게 써주든가
+        })
+
+        $('#frm_login').on('submit', function(event){
+            if(idPass == false){
+                alert('아이디를 확인하세요.')
+                event.preventDefault();
+                return;
+            }
+            if($('#pw').val().length == 0){    // 길이로 안 갔다. $('#pw').val() == '' 
+                alert('비밀번호를 입력하세요.')
+                event.preventDefault();
+                return;
+            }
+        })
+
+
+    </script>
+
+</body>
+</html>
