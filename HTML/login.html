@@ -5,23 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 </head>
 <body>
     
-    <img src="https://www.gdu.co.kr/images/main/logo.png" width="176px">
-    <form action="board.html">
-        <input type="text" placeholder="아이디" name="id" id="id_user">
-        <br>
-        <input type="password" placeholder="비밀번호" name="pw" id="pw_user">
-        <br>
-        <button>로그인</button>
-        <br>
-        <label for="auto_log">
-            <input type="checkbox" name="auto_log" id="auto_log">자동 로그인
-        </label>
-        <label for="save_pw">
-            <input type="checkbox" name="save_pw" id="save_pw">비밀번호 저장
-        </label>
-    </form>
+    <div class="wrap">
+        <!-- <header> 는 위에다 두는 <div> -->
+        <header>
+            <a href="https://www.gdu.co.kr/main/main.html">
+                <img src="https://www.gdu.co.kr/images/main/logo.png">
+            </a>
+        </header>
+        <!-- <section> 본문에 배치하는 <div> -->
+        <section>
+            <form id="frm_login" method="post" action="/">
+                <div>
+                    <strong>※ 회원구분을 위해 체크해주세요</strong>
+                    <input type="radio" name="gubun" value="1" id="sugangsang">
+                    <label for="sugangsang">수강생</label>
+                    <input type="radio" name="gubun" value="2" id="ilban">
+                    <label for="ilban">일반회원</label>
+                </div>
+                <div>
+                    <!-- 꼭 name속성이 필요. submit할 것처럼 만들어라 -->
+                    <input type="text" name="id" id="id" placeholder="아이디">
+                    <div id="msg_id"></div>
+                </div>
+                <div>
+                    <input type="password" name="pw" id="pw" placeholder="●●●●">
+                </div>
+                <div>
+                    <button>로그인</button>
+                </div>
+            </form> 
+        </section>
+        <!-- 로그인 버튼 아래 -->
+        <footer>
+            <div>
+                <p><strong>아직 회원이 아닌가요?</strong></p>
+                <p>가입하면 다양한 서비스 이용이 가능합니다.</p>
+                <a href="javasript:void(0)">회원가입</a>
+            </div>
+            <div>
+                <p><strong>아이디/비밀번호를 잊으셨나요?</strong></p>
+                <p>간단하게 아이디/비밀번호를 찾을 수 있습니다.</p>
+                <a href="javasript:void(0)">아이디/비밀번호 찾기</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="login.js"></script>
+
 </body>
 </html>
